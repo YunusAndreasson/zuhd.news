@@ -40,6 +40,8 @@ interface ListRowProps {
   children?: ReactNode;
   /** At the trailing edge: a reading, a count, what a press does. */
   trailing?: ReactNode;
+  /** Let the title use the full width when a row has several readings. */
+  stackTrailing?: boolean;
   /** The first row of a group draws no rule above it. */
   first?: boolean;
   /** The row the page is about: `pillBg`, edge to edge. */
@@ -66,6 +68,7 @@ export const ListRow = memo(function ListRow({
   leadingWidth = ROW_LEADING,
   children,
   trailing,
+  stackTrailing,
   first,
   current,
   height,
@@ -80,13 +83,14 @@ export const ListRow = memo(function ListRow({
   const { colors } = useTheme();
   const style: StyleProp<ViewStyle> = [
     styles.row,
+    stackTrailing && styles.stacked,
     !first && { ...styles.ruled, borderTopColor: colors.rule },
     height !== undefined && { ...styles.fixed, height },
     current && { ...styles.current, backgroundColor: colors.pillBg },
   ];
   const content = (
     <>
-      <View style={styles.subject}>
+      <View style={[styles.subject, stackTrailing && styles.stackedSubject]}>
         {leading !== undefined ? (
           <View style={[styles.leading, { width: leadingWidth }]}>
             {/* A strut: the title's line at any text size, so the mark
@@ -104,7 +108,7 @@ export const ListRow = memo(function ListRow({
           {children}
         </View>
       </View>
-      {trailing}
+      {stackTrailing ? <View style={styles.trailingLine}>{trailing}</View> : trailing}
     </>
   );
 
@@ -197,6 +201,14 @@ const styles = StyleSheet.create({
   },
   ruled: { borderTopWidth: StyleSheet.hairlineWidth },
   fixed: { minHeight: 0, paddingVertical: 0 },
+  stacked: { flexDirection: 'column', alignItems: 'stretch', gap: SPACING.xs },
+  stackedSubject: { flex: 0 },
+  trailingLine: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: SPACING.md,
+  },
   // Out to the sheet's edges, through the list's gutter.
   current: {
     marginHorizontal: -SPACING.screenPadding,

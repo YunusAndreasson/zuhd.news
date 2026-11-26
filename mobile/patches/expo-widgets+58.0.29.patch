@@ -109,12 +109,12 @@ diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widget
    }
  }
  
-+// Glance's own Text renderer accepts system typefaces. A RemoteViews TextView
-+// keeps Source Sans in launcher builds and uses Android's scaled SP and ellipsis.
++// Use Source Sans where the host can load it, with an explicit native weight
++// on the layout for launchers that use the system font.
 +private fun brandedNewsText(context: ConverterContext, props: TextProps, style: ModifierType): Emittable? {
 +  val app = context.applicationContext
-+  val name = if (props.fontWeight?.toGlanceFontWeight() == FontWeight.Bold)
-+    "zuhd_widget_text_bold" else "zuhd_widget_text_regular"
++  val strong = style["strong"]?.asBoolean() ?: (props.fontWeight?.toGlanceFontWeight() == FontWeight.Bold)
++  val name = if (strong) "zuhd_widget_text_bold" else "zuhd_widget_text_regular"
 +  val layout = app.resources.getIdentifier(name, "layout", app.packageName)
 +  val id = app.resources.getIdentifier("zuhd_widget_text", "id", app.packageName)
 +  if (layout == 0 || id == 0) return null
@@ -673,9 +673,10 @@ new file mode 100644
 +}
 diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetClock.kt b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetClock.kt
 new file mode 100644
+index 0000000..5376cde
 --- /dev/null
 +++ b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetClock.kt
-@@ -0,0 +1,94 @@
+@@ -0,0 +1,129 @@
 +package expo.modules.widgets
 +
 +import android.app.AlarmManager
@@ -687,32 +688,67 @@ new file mode 100644
 +import android.content.Context
 +import android.content.Intent
 +import android.net.ConnectivityManager
++import android.net.Network
 +import android.net.NetworkCapabilities
++import android.os.Build
 +
 +internal object WidgetClock {
-+  private var watching = false
++  private var watchingConfiguration = false
++  private var watchingNetwork = false
 +
 +  @Synchronized
 +  fun watch(context: Context) {
-+    if (watching) return
-+    watching = true
 +    val app = context.applicationContext
-+    app.registerComponentCallbacks(object : ComponentCallbacks {
-+      override fun onConfigurationChanged(newConfig: Configuration) {
-+        WidgetsUpdater.reloadAll(app)
-+      }
++    if (!watchingConfiguration) {
++      app.registerComponentCallbacks(object : ComponentCallbacks {
++        override fun onConfigurationChanged(newConfig: Configuration) {
++          WidgetsUpdater.reloadAll(app)
++        }
 +
-+      override fun onLowMemory() = Unit
-+    })
-+    runCatching {
-+      app.getSystemService(ConnectivityManager::class.java)?.registerDefaultNetworkCallback(
++        override fun onLowMemory() = Unit
++      })
++      watchingConfiguration = true
++    }
++    if (watchingNetwork) return
++    val connectivity = app.getSystemService(ConnectivityManager::class.java) ?: return
++    watchingNetwork = runCatching {
++      connectivity.registerDefaultNetworkCallback(
 +        object : ConnectivityManager.NetworkCallback() {
-+          override fun onAvailable(network: android.net.Network) { WidgetsUpdater.reloadAll(app) }
-+          override fun onLost(network: android.net.Network) { WidgetsUpdater.reloadAll(app) }
++          private var current = connectivity.activeNetwork
++          private var wasOffline = offline(app)
++
++          private fun changed(offline: Boolean) {
++            if (offline == wasOffline) return
++            wasOffline = offline
++            WidgetsUpdater.reload(app, "LatestNews")
++            WidgetsUpdater.reload(app, "DailyBriefing")
++          }
++
++          override fun onAvailable(network: Network) {
++            current = network
++          }
++
++          override fun onCapabilitiesChanged(network: Network, capabilities: NetworkCapabilities) {
++            if (network == current) changed(!isUsable(capabilities))
++          }
++
++          override fun onLost(network: Network) {
++            if (network != current) return
++            current = null
++            changed(true)
++          }
 +        }
 +      )
-+    }
++    }.isSuccess
 +  }
++
++  private fun isUsable(capabilities: NetworkCapabilities): Boolean =
++    capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
++      capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED) &&
++      (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q ||
++        capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_SUSPENDED)) &&
++      (!capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN) ||
++        capabilities.linkDownstreamBandwidthKbps > 0)
 +
 +  private data class Entry(val timestamp: Long, val face: Map<String, Any?>, val offlineFace: Map<String, Any?>)
 +
@@ -759,7 +795,7 @@ new file mode 100644
 +      ?: return@runCatching null
 +    val active = connectivity.activeNetwork ?: return@runCatching true
 +    val capabilities = connectivity.getNetworkCapabilities(active) ?: return@runCatching null
-+    !capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
++    !isUsable(capabilities)
 +  }.getOrNull()
 +}
 +
@@ -771,12 +807,14 @@ new file mode 100644
 +  }
 +}
 diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetObject.kt b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetObject.kt
+index 881ad3b..55fd437 100644
 --- a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetObject.kt
 +++ b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetObject.kt
-@@ -24,6 +24,7 @@
+@@ -24,6 +24,8 @@
  
    fun updateSnapshot(props: Map<String, Any?>) {
      WidgetsStorage.set(context, "__expo_widgets_${name}_props", props)
++    if (name == "LatestNews") WidgetClock.watch(context)
 +    if (name == "DailyBriefing") WidgetClock.schedule(context)
      reload()
    }

@@ -110,6 +110,7 @@ import { SheetMapKeyPage } from './SheetMapKeyPage';
 import { SheetPager } from './SheetPager';
 import { SheetPrivacyPage } from './SheetPrivacyPage';
 import { SheetSearchPage } from './SheetSearchPage';
+import { Toast, type ToastRef } from './Toast';
 import { Toggle } from './Toggle';
 import { WidgetSetup } from './WidgetSetup';
 
@@ -247,7 +248,8 @@ interface MenuSheetProps extends BaseSheetProps {
    * this when the menu has been closed a while.
    */
   rootKey: number;
-  onToast?: (message: string) => void;
+  toastRef: React.RefObject<ToastRef | null>;
+  onDismissToast: (message: string) => void;
 }
 
 export const MenuSheet = memo(function MenuSheet({
@@ -263,7 +265,8 @@ export const MenuSheet = memo(function MenuSheet({
   onSelectRow,
   onStoryPress,
   rootKey,
-  onToast,
+  toastRef,
+  onDismissToast,
 }: MenuSheetProps) {
   const { typography } = useTheme();
   const prefsApi = usePreferences();
@@ -281,6 +284,10 @@ export const MenuSheet = memo(function MenuSheet({
   const { push, pop, reset } = nav;
   const [canRate, setCanRate] = useState<boolean | null>(null);
   const [notificationPermissionDenied, setNotificationPermissionDenied] = useState(false);
+  const onToast = (message: string) => toastRef.current?.show(message);
+  const permissionOff =
+    (channelsOff && preferences.notifications) ||
+    (notificationPermissionDenied && (!registration.deliveryChecked || channelsOff));
 
   // The pages a row opened, by key. Kept until the menu closes: a key popped
   // off the stack is never pushed again, so a stale entry is only memory.
@@ -309,8 +316,8 @@ export const MenuSheet = memo(function MenuSheet({
   // by its back, or the menu going back to its root, clears it.
   const [searchQuery, setSearchQuery] = useState('');
   const navPop = useCallback(() => {
+    if (!pop()) return;
     if (nav.current === 'search') setSearchQuery('');
-    pop();
     const next = nav.stack[nav.stack.length - 2];
     announce(next ? titleOf(next) : 'menu');
   }, [pop, nav.current, nav.stack, titleOf]);
@@ -529,8 +536,7 @@ export const MenuSheet = memo(function MenuSheet({
           <MenuRow
             title="notifications"
             description={
-              (notificationPermissionDenied && !enabled) ||
-              (preferences.notifications && channelsOff)
+              permissionOff
                 ? 'Notification permission is off. You can enable it in device settings.'
                 : preferences.notifications && !enabled
                   ? registration.status === 'failed'
@@ -558,8 +564,7 @@ export const MenuSheet = memo(function MenuSheet({
               onPress={() => void registerPushToken(undefined, 'retry', offerHistory().generation)}
             />
           ) : null}
-          {(!enabled && notificationPermissionDenied) ||
-          (preferences.notifications && channelsOff) ? (
+          {permissionOff ? (
             <MenuRow
               title="open device settings"
               trailing="leave"
@@ -584,7 +589,7 @@ export const MenuSheet = memo(function MenuSheet({
             description="The tips return as you read"
             onPress={() => {
               resetOnboarding();
-              onToast?.('Tips return as you read');
+              onDismissToast('Tips return as you read');
               sheetRef.current?.dismiss();
             }}
           />
@@ -737,6 +742,7 @@ export const MenuSheet = memo(function MenuSheet({
           </GestureDetector>
         )}
       </SheetPager>
+      <Toast ref={toastRef} bottomOffset={bottomInset + SPACING.sm} />
     </SheetLayout>
   );
 });
@@ -776,6 +782,8 @@ function MenuRootPage({
   navPush: (page: PageKey) => void;
   onGroup: (group: CatalogGroup) => void;
 }) {
+  const { width, fontScale } = useWindowDimensions();
+  const stackWindows = width < 350 || fontScale > 1.4;
   return (
     <>
       {MENU_SECTIONS.map((section, sectionIndex) => {
@@ -786,14 +794,16 @@ function MenuRootPage({
             {/* The first section is a table: its label's line names the three
                 windows over their columns, once, and every row has all three. */}
             {sectionIndex === 0 ? (
-              <View style={styles.tableHead}>
-                <View style={styles.tableLabel}>
+              <View style={[styles.tableHead, stackWindows && styles.tableHeadStacked]}>
+                <View style={!stackWindows && styles.tableLabel}>
                   <SectionLabel label={section} first />
                 </View>
-                <View style={styles.tableHeads}>
-                  <WindowHeads labels={WINDOW_NAMES} room={HEADLINE_SCALE} />
+                <View style={styles.tableHeaderReadings}>
+                  <View style={styles.tableHeads}>
+                    <WindowHeads labels={WINDOW_NAMES} room={HEADLINE_SCALE} />
+                  </View>
+                  <View style={styles.chevronRoom} />
                 </View>
-                <View style={styles.chevronRoom} />
               </View>
             ) : section === 'economy' ? (
               // Every row under it moves by the month, so the window is a
@@ -827,6 +837,7 @@ function MenuRootPage({
                 key={group.key}
                 group={group}
                 first={i === 0}
+                stackWindows={sectionIndex === 0 && stackWindows}
                 onPress={() => onGroup(group)}
               />
             ))}
@@ -952,10 +963,12 @@ const HEADLINE_SCALE = 1.15;
 const GroupEntry = memo(function GroupEntry({
   group,
   first,
+  stackWindows,
   onPress,
 }: {
   group: CatalogGroup;
   first: boolean;
+  stackWindows: boolean;
   onPress: () => void;
 }) {
   const row = groupTableRow(group);
@@ -975,6 +988,7 @@ const GroupEntry = memo(function GroupEntry({
     <ListRow
       first={first}
       title={title}
+      stackTrailing={stackWindows}
       onPress={onPress}
       accessibilityLabel={said.join(', ')}
       accessibilityHint={headline ? 'Opens every stock market' : undefined}
@@ -1320,6 +1334,8 @@ const styles = StyleSheet.create({
   // The table's head: the section's label, the windows over their columns,
   // and the room a row's chevron takes, with a row's own gaps between them.
   tableHead: { flexDirection: 'row', alignItems: 'flex-end', gap: SPACING.md },
+  tableHeadStacked: { flexDirection: 'column', alignItems: 'stretch', gap: 0 },
+  tableHeaderReadings: { flexDirection: 'row', justifyContent: 'flex-end', gap: SPACING.md },
   tableLabel: { flex: 1 },
   // On the label's line: a section label keeps this much under it.
   tableHeads: { paddingBottom: SPACING.xs },

@@ -112,6 +112,8 @@ jest.mock('../lib/analytics', () => ({
 
 import Storage from 'expo-sqlite/kv-store';
 import type { Article, Category } from '@shared/types';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { API_SNAPSHOTS } from '../lib/api-snapshots';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { getSnapshot as getDataUsage, recordBytes } from '../lib/data-usage';
 import { immediatePersister, persister, queryClient } from '../lib/query-client';
@@ -303,6 +305,32 @@ describe('eraseLocalData', () => {
 it('rejects when a required asynchronous deletion fails', async () => {
   jest.mocked(Storage.removeItem).mockRejectedValueOnce(new Error('disk unavailable'));
   await expect(eraseLocalData()).rejects.toThrow('disk unavailable');
+});
+
+it('drops an invalid restored snapshot while keeping the feed and valid snapshots', async () => {
+  const cache = new QueryClient();
+  const trends = { fetchedAt: '2026-11-24', asOf: '2026-11-24', indicators: [] };
+  const feed = { generated: '2026-11-24', categories: {}, briefing: null };
+  const restore = async (snapshot: unknown) => {
+    cache.setQueryData(['feed'], feed);
+    cache.setQueryData(API_SNAPSHOTS.trends.queryKey, snapshot);
+    await immediatePersister.persistClient({
+      timestamp: Date.now(),
+      buster: 'b',
+      clientState: dehydrate(cache),
+    });
+    return (await immediatePersister.restoreClient())?.clientState.queries.map(
+      (query) => query.state.data,
+    );
+  };
+  try {
+    expect(await restore({ snapshot: { ...trends, indicators: {} }, etag: 'bad' })).toEqual([feed]);
+    expect(await restore(trends)).toEqual([feed, trends]);
+    const tagged = { snapshot: trends, etag: 'good' };
+    expect(await restore(tagged)).toEqual([feed, tagged]);
+  } finally {
+    cache.clear();
+  }
 });
 
 it('rejects when clearing a synchronous store fails', async () => {

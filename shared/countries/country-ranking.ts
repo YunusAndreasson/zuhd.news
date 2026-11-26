@@ -88,8 +88,8 @@ export const METRICS: Record<MetricKey, MetricMeta> = {
   population: {
     label: 'population',
     scale: 'log',
-    description: 'Total resident population.',
-    source: 'REST Countries · UN data',
+    description: 'Total resident population. Observation dates vary and are unavailable.',
+    source: 'REST Countries · April 2026 snapshot',
     sourceUrl: 'https://restcountries.com/',
   },
   gdp: {

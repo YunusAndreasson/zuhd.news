@@ -1,6 +1,11 @@
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import type { Article, FeedResponse } from '@shared/types';
-import { notifyManager, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  notifyManager,
+  onlineManager,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import { act, renderHook } from '@testing-library/react';
 import * as Network from 'expo-network';
 import type { ReactNode } from 'react';
@@ -82,6 +87,26 @@ beforeEach(() => {
 });
 afterEach(() => notifyManager.setScheduler((cb) => setTimeout(cb, 0)));
 
+it('keeps the bundled starter on a returning offline launch until the feed arrives', async () => {
+  jest.mocked(feedCache.readSync).mockReturnValue(null);
+  onlineManager.setOnline(false);
+  const hook = mount();
+  try {
+    expect(hook.result.current.loading).toBe(false);
+    expect(hook.result.current.starter?.slug).toBe(archiveStory.slug);
+    expect(hook.result.current.grouped.economy).toContainEqual(archiveStory);
+    await act(async () => {
+      hook.client.setQueryData(['feed'], mockFeed('return', ['one']));
+    });
+    expect(hook.result.current.starter).toBeNull();
+    expect(hook.result.current.grouped.politics[0]?.slug).toBe('one');
+  } finally {
+    hook.unmount();
+    onlineManager.setOnline(true);
+    jest.mocked(feedCache.readSync).mockImplementation(() => mockFeed('old', ['one']));
+  }
+});
+
 it('keeps the grouped stories when only the build stamp changes', async () => {
   const hook = mount();
   await act(async () => {});
@@ -91,6 +116,47 @@ it('keeps the grouped stories when only the build stamp changes', async () => {
   });
   expect(hook.result.current.generated).toBe('new');
   expect(hook.result.current.grouped).toBe(before);
+});
+
+it('keeps an opened article intact across a colliding arrival and accepts a complete correction', async () => {
+  const hook = mount();
+  const base = mockFeed('old', ['linked']).categories.politics?.[0];
+  if (!base) throw new Error('Missing test article');
+  const article: Article = {
+    ...base,
+    title: 'Lagos report',
+    location: 'Lagos',
+    lat: 6.52,
+    lng: 3.38,
+    sentences: ['The original Lagos body.'],
+  };
+  const replacement = {
+    ...article,
+    title: 'Corrected Sapporo report',
+    location: 'Sapporo',
+    lat: 43.06,
+    lng: 141.35,
+    sentences: ['The corrected Sapporo body.'],
+  };
+  await act(async () => hook.result.current.injectArticle(article, 'politics'));
+  await act(async () => {
+    hook.client.setQueryData(['feed'], {
+      generated: 'collision',
+      categories: { politics: [article], science: [replacement] },
+      briefing: null,
+    });
+  });
+  expect(hook.result.current.grouped.politics).toEqual([article]);
+  expect(hook.result.current.grouped.science).toEqual([]);
+  await act(async () => {
+    hook.client.setQueryData(['feed'], {
+      generated: 'corrected',
+      categories: { science: [replacement] },
+      briefing: null,
+    });
+  });
+  expect(hook.result.current.grouped.politics).toEqual([]);
+  expect(hook.result.current.grouped.science).toEqual([replacement]);
 });
 
 it('a pull joins the launch check and receives its added stories', async () => {

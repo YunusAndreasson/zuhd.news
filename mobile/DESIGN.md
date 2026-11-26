@@ -362,14 +362,17 @@ platform's.
 Latest news uses the same Source Sans 3, paper, emphasis ink and rule as the
 app. The smaller widget gives one headline the reading space. Wider widgets
 run a larger lead and a chronological list, with section and age under each
-headline. A geographic illustration accompanies a located lead story at wider
-sizes and hides when text needs the space. A reader can disable maps in the
-platform editor.
+headline. The compact widget centers a larger lead beneath the masthead. When
+there is room, a short geographic illustration sits above a located compact
+lead. It sits beside the lead at wider sizes. Illustrations give way when
+text needs the space. A reader can disable maps in the platform editor.
 
 The shared paper and spacing tokens live in `constants/paper.ts` so the
 embedded widget renderer can load them without mounting the app. Widget text
 uses native styles and size limits because the launcher and WidgetKit control
-the available space. Daily briefing keeps its printed UTC edition date.
+the available space. Daily briefing keeps its printed UTC edition date. Its
+action sits on opaque paper in a dedicated footer. Cover art and market charts
+use the space above it.
 
 ## Accessibility checklist
 

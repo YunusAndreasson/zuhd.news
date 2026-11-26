@@ -215,7 +215,6 @@ export const StoryDock = memo(function StoryDock({
   // as the thumb moves, without waiting for a committed story or React render.
   const destinationHue = useDerivedValue(
     () => hues?.[storyAt(fraction.value, count, centers)] ?? colors.textEmphasis,
-    [hues, count, centers, colors.textEmphasis],
   );
   // The tooltip says when, large, and nothing else loud (2026-09-22, the
   // user's request). It led with `12 of 48` over `politics · 12h ago` in
@@ -331,7 +330,6 @@ export const StoryDock = memo(function StoryDock({
       const at = centers ? positionAt(centers, p) : count > 0 ? (p + 1) / count : 0;
       fraction.value = Math.min(1, Math.max(0, at));
     },
-    [count, centers],
   );
   const handleAdjust = useCallback(
     (e: AccessibilityActionEvent) => {

@@ -31,7 +31,7 @@ function LatestNews(
     <Text
       color={colors[ink]}
       maxLines={lines}
-      modifiers={[fillMaxWidth(), { $type: 'newsWidgetText', ...tone(ink) }]}
+      modifiers={[fillMaxWidth(), { $type: 'newsWidgetText', strong, ...tone(ink) }]}
       style={{ fontSize: size, fontWeight: strong ? 'bold' : 'normal' }}
     >
       {value}
@@ -46,6 +46,39 @@ function LatestNews(
   const headerWidth = inner - (env.editWidgetId ? 44 : 0);
   const afterMark = headerWidth - d.size.mark;
   const wordmarkWidth = showSection ? d.space.xxl + d.space.xl : afterMark - d.space.xxs;
+  const headline = (
+    story: (typeof stories)[number],
+    size: number,
+    available: number,
+    strong: boolean,
+  ) => {
+    const showMeta = android.hasMetadata(available, size, story.title);
+    return (
+      <>
+        {txt(
+          story.title,
+          size,
+          android.lines(available, size, showMeta, story.title),
+          'title',
+          strong,
+        )}
+        {showMeta ? (
+          <>
+            <Spacer modifiers={[height(d.space.xxs)]} />
+            {android.splitMetadata ? (
+              <>
+                {txt(story.sectionLabel, d.size.meta, 1, 'accent')}
+                {txt(story.ageLabel, d.size.meta, 1, 'quiet')}
+              </>
+            ) : (
+              txt(story.metadata, d.size.meta, 1, 'accent')
+            )}
+          </>
+        ) : null}
+      </>
+    );
+  };
+  const compact = small ? stories[0] : undefined;
   return (
     <Column
       modifiers={[fillMaxSize(), surface('paper'), padding(inset, d.space.sm, inset, d.space.sm)]}
@@ -99,20 +132,58 @@ function LatestNews(
         ) : null}
       </Row>
       {rule()}
-      {(small || env.editWidgetId) && status ? txt(status, d.size.meta, 1, 'quiet') : null}
-      {stories.length === 0 ? (
+      {android.statusHeight ? (
+        <Row verticalAlignment="center" modifiers={[fillMaxWidth(), height(android.statusHeight)]}>
+          {txt(status, d.size.meta, 1, 'quiet')}
+        </Row>
+      ) : null}
+      {small && !compact ? (
+        <Row
+          verticalAlignment="center"
+          modifiers={[fillMaxWidth(), height(lead), link(d.home, m.empty)]}
+        >
+          {txt(m.empty, d.size.headline, 3, 'title', true)}
+        </Row>
+      ) : null}
+      {!small && stories.length === 0 ? (
         <Column modifiers={[fillMaxWidth(), padding(0, d.space.md, 0, 0), link(d.home, m.empty)]}>
           {txt(m.empty, d.size.headline, 3, 'title', true)}
         </Column>
       ) : null}
-      {stories.slice(0, count).map((story, index) => {
+      {compact ? (
+        <Row
+          verticalAlignment="center"
+          modifiers={[
+            fillMaxWidth(),
+            height(lead),
+            link(compact.url, `${compact.title}, ${compact.metadata}`),
+          ]}
+        >
+          <Column modifiers={[width(inner)]}>
+            {android.compactMap && compact.image ? (
+              <>
+                <Image
+                  source={{ uri: compact.image }}
+                  contentScale="crop"
+                  modifiers={[width(inner), height(android.compactMap), cornerRadius(d.space.xs)]}
+                />
+                <Spacer modifiers={[height(d.space.sm)]} />
+              </>
+            ) : null}
+            {headline(
+              compact,
+              android.compactHeadline,
+              lead - (android.compactMap ? android.compactMap + d.space.sm : 0),
+              true,
+            )}
+          </Column>
+        </Row>
+      ) : null}
+      {(!small ? stories.slice(0, count) : []).map((story, index) => {
         const first = index === 0;
         const available = first ? lead : row;
-        const showMap = first && !small && m.maps && !!story.image && scale < 1.5;
+        const showMap = first && m.maps && !!story.image && scale < 1.5;
         const mapWidth = Math.round(inner * (large ? 0.35 : 0.24));
-        const headlineSize = small || first ? d.size.lead : d.size.headline;
-        const showMeta = android.hasMetadata(available);
-        const lines = android.lines(available, headlineSize, showMeta);
         return (
           <Column key={story.url}>
             {index ? rule() : null}
@@ -125,20 +196,7 @@ function LatestNews(
               ]}
             >
               <Column modifiers={[width(showMap ? inner - mapWidth - d.space.sm : inner)]}>
-                {txt(story.title, headlineSize, lines, 'title', first)}
-                {showMeta ? (
-                  <>
-                    <Spacer modifiers={[height(d.space.xxs)]} />
-                    {android.splitMetadata ? (
-                      <>
-                        {txt(story.sectionLabel, d.size.meta, 1, 'accent')}
-                        {txt(story.ageLabel, d.size.meta, 1, 'quiet')}
-                      </>
-                    ) : (
-                      txt(story.metadata, d.size.meta, 1, 'accent')
-                    )}
-                  </>
-                ) : null}
+                {headline(story, first ? d.size.lead : d.size.headline, available, first)}
               </Column>
               {showMap && story.image ? (
                 <>

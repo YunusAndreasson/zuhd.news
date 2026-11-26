@@ -66,6 +66,15 @@ it('supports every platform configuration choice, including sections with an emp
   expect(options.appearance.values.map(({ value }) => value)).toEqual(['system', 'light', 'dark']);
 });
 
+it('does not publish a widget link for two different articles sharing a slug', () => {
+  const first = { ...article('same-link', now - 60_000), title: 'Report from Lagos', lat: 6.52 };
+  const second = { ...first, title: 'Report from Sapporo', lat: 43.06, publishedAt: now };
+  const result = selectNewsWidget(feed({ politics: [first], science: [second] }));
+  expect(result?.stories?.latest).toEqual([]);
+  expect(result?.stories?.politics).toEqual([]);
+  expect(result?.stories?.science).toEqual([]);
+});
+
 it('schedules the stale boundary once and skips times that already passed', () => {
   const fresh = newsTimelineTimes(now + 5 * 60_000, now);
   expect(fresh[0]).toBe(now + 5 * 60_000);
@@ -134,4 +143,57 @@ it('uses the story list’s publication clock for both a batch and a separate st
   } finally {
     jest.restoreAllMocks();
   }
+});
+
+it('gives the compact lead the full width and reserves three lines before adding a map', () => {
+  const props = selectNewsWidget(feed({ politics: [article('lead', now - 60_000)] }));
+  const lead = props?.stories?.latest?.[0];
+  if (!props || !lead) throw new Error('Expected a lead story');
+  lead.image = 'file:///widget-map.png';
+  const layout = (heightDp: number, fontScale: number, images = true) =>
+    renderNewsModel(
+      props,
+      { configuration: { images }, widthDp: 170, heightDp, fontScale, timestamp: now },
+      newsWidgetDesign,
+    ).android;
+  const compact = layout(228, 1);
+  expect(compact.compactHeadline).toBeGreaterThan(newsWidgetDesign.size.lead);
+  expect(compact.compactMap).toBeGreaterThan(0);
+  const textHeight = compact.lead - compact.compactMap - newsWidgetDesign.space.sm;
+  expect(
+    compact.lines(textHeight, compact.compactHeadline, true, lead.title),
+  ).toBeGreaterThanOrEqual(3);
+  expect(layout(228, 1.3).compactMap).toBeGreaterThan(0);
+  expect(layout(112, 1).compactMap).toBe(0);
+  expect(layout(228, 2).compactMap).toBe(0);
+  expect(layout(228, 1, false).compactMap).toBe(0);
+  delete lead.image;
+  expect(layout(228, 1).compactMap).toBe(0);
+});
+
+it('reserves a separate compact status row and retains the cached lead offline', () => {
+  const props = selectNewsWidget(feed({ politics: [article('cached-lead', now - 60_000)] }));
+  const env = { configuration: {}, widthDp: 170, heightDp: 228, timestamp: now };
+  const online = renderNewsModel(props ?? {}, env, newsWidgetDesign);
+  const offline = renderNewsModel({ ...props, offline: true }, env, newsWidgetDesign);
+  expect(offline.status).toBe('Offline');
+  expect(offline.android.statusHeight).toBeGreaterThan(0);
+  expect(offline.android.lead + offline.android.statusHeight).toBe(online.android.lead);
+  expect(offline.stories[0]?.title).toBe('cached-lead');
+});
+
+it('reserves the taller Arabic fallback lines before adding a compact map', () => {
+  const title = 'تستأنف القطارات رحلاتها بعد العاصفة';
+  const props = selectNewsWidget(feed({ politics: [{ ...article('arabic', now), title }] }));
+  const lead = props?.stories?.latest?.[0];
+  if (!props || !lead) throw new Error('Expected a lead story');
+  lead.image = 'file:///widget-map.png';
+  const { android } = renderNewsModel(
+    props,
+    { configuration: {}, widthDp: 170, heightDp: 228, language: 'ar', timestamp: now },
+    newsWidgetDesign,
+  );
+  expect(android.compactMap).toBe(0);
+  expect(android.hasMetadata(android.lead, android.compactHeadline, title)).toBe(true);
+  expect(android.lines(android.lead, android.compactHeadline, true, title)).toBe(3);
 });

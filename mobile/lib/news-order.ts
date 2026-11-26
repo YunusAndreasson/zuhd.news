@@ -79,8 +79,13 @@ function compareNewsRecency(a: RiverArticle, b: RiverArticle): number {
  */
 export function orderNewsRiver(grouped: GroupedArticles): RiverArticle[] {
   const flat: RiverArticle[] = [];
+  const seen = new Set<string>();
   for (const category of CATEGORIES) {
-    for (const article of grouped[category] ?? []) flat.push({ ...article, category });
+    for (const article of grouped[category] ?? []) {
+      if (seen.has(article.slug)) continue;
+      seen.add(article.slug);
+      flat.push({ ...article, category });
+    }
   }
   flat.sort((a, b) => articleTime(b) - articleTime(a));
   let ranAt = Number.NaN;

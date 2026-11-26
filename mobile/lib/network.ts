@@ -10,6 +10,16 @@ export function isOffline(): boolean {
   return lastKnown === false;
 }
 
+const onlineState = (state: Network.NetworkState) => state.isInternetReachable ?? state.isConnected;
+
+/** A scheduled job also runs without a mounted connectivity subscription. */
+export async function readConnectivity(): Promise<boolean | undefined> {
+  const before = lastKnown;
+  const state = await Network.getNetworkStateAsync().catch(() => undefined);
+  if (lastKnown !== before) return lastKnown;
+  return (state && onlineState(state)) ?? lastKnown;
+}
+
 /** Share one native subscription and one initial probe across the query client,
  * feed, offline message and push registration. A late probe cannot undo a
  * native event, including after every subscriber has unmounted. */
@@ -20,7 +30,7 @@ export function subscribeConnectivity(listener: Listener) {
     let active = true;
     const publish = (state: Network.NetworkState, initial: boolean) => {
       if (!active || (initial && lastKnown !== undefined)) return;
-      const online = state.isInternetReachable ?? state.isConnected;
+      const online = onlineState(state);
       if (online === undefined || online === lastKnown) return;
       lastKnown = online;
       for (const notify of listeners) notify(online, initial);

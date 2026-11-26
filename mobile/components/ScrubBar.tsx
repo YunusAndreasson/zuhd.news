@@ -434,7 +434,7 @@ export const ScrubBar = memo(function ScrubBar({
       : null;
 
   const bar = (
-    <View style={style} onLayout={handleLayout} {...accessibility}>
+    <View style={[style, styles.coordinateSpace]} onLayout={handleLayout} {...accessibility}>
       <View style={[styles.track, { height }]}>
         {marks && markColor
           ? marks.map((mark) =>
@@ -635,6 +635,8 @@ export const ScrubTooltip = memo(function ScrubTooltip({
 });
 
 const styles = StyleSheet.create({
+  // Track fractions are physical x positions, including when the app uses RTL.
+  coordinateSpace: { direction: 'ltr' },
   track: { width: '100%' },
   // Centred, so a faded hairline sits on the track's midline.
   row: { flexDirection: 'row', alignItems: 'center', width: '100%' },

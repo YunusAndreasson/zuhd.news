@@ -7,6 +7,7 @@ import {
   type HintId,
   MAX_HINT_SHOWS,
   type OnboardingState,
+  onboardingReplayGeneration,
   recordHintShown,
   subscribe,
 } from '../lib/onboarding-store';
@@ -126,6 +127,14 @@ export function useOnboardingHints(opts: { ready: boolean; suppressed: boolean }
   // next lesson replace it two seconds later on the same page. A real page
   // turn increments snapCount and naturally re-enables the teaching cadence.
   const [pausedAtSnapCount, setPausedAtSnapCount] = useState<number | null>(null);
+  const generation = onboardingReplayGeneration();
+  const [seenGeneration, setSeenGeneration] = useState(generation);
+  if (seenGeneration !== generation) {
+    setSeenGeneration(generation);
+    setRested(new Set());
+    setPausedAtSnapCount(null);
+    setActiveHint(null);
+  }
   const hintsPaused = pausedAtSnapCount === snapCount;
   // biome-ignore lint/correctness/useExhaustiveDependencies: `snapCount` is the intentional dwell-restart signal — each snap re-arms the countdown
   useEffect(() => {

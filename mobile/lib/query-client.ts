@@ -5,7 +5,7 @@ import { File, Paths } from 'expo-file-system';
 import Storage from 'expo-sqlite/kv-store';
 import * as Updates from 'expo-updates';
 import { AppState } from 'react-native';
-import { API_SNAPSHOTS, snapshotData } from './api-snapshots';
+import { API_SNAPSHOTS, type ApiSnapshot, snapshotData } from './api-snapshots';
 import { markLaunch } from './launch-timing';
 import { subscribeConnectivity } from './network';
 import { deleteLegacyFile, orderStorageWork } from './store-plumbing';
@@ -29,6 +29,14 @@ const QUERY_CACHE_KEY = 'REACT_QUERY_OFFLINE_CACHE';
 const HEAT_CACHE_KEY = 'REACT_QUERY_LAUNCH_HEAT';
 const HEATMAP = API_SNAPSHOTS.heatmap;
 const HEAT_HASH = hashKey(HEATMAP.queryKey);
+const snapshotByHash = new Map<string, ApiSnapshot<unknown>>(
+  Object.values(API_SNAPSHOTS).map((snapshot) => [hashKey(snapshot.queryKey), snapshot]),
+);
+
+function validSnapshotQuery(query: PersistedClient['clientState']['queries'][number]) {
+  const snapshot = snapshotByHash.get(query.queryHash);
+  return !snapshot || snapshot.validate(snapshotData(query.state.data));
+}
 
 // One-time migration from the previous file-backed AsyncStorage shim. The
 // shim stored the persister's already-serialized value inside a JSON object.
@@ -111,7 +119,12 @@ export const immediatePersister: Persister = {
   async restoreClient() {
     const before = removal;
     const client = await orderStorageWork(async () => disk.restoreClient());
-    return before === removal ? client : undefined;
+    if (before !== removal || !client) return undefined;
+    const { clientState } = client;
+    return {
+      ...client,
+      clientState: { ...clientState, queries: clientState.queries.filter(validSnapshotQuery) },
+    };
   },
   removeClient() {
     const generation = ++removal;
@@ -137,12 +150,8 @@ export const persister: Persister = {
 
 export const PERSIST_MAX_AGE_MS = DAY_MS;
 
-/** The persisted cache belongs to the code that wrote it. A restored layer
- *  reaches the screen without its validator (`snapshotData`), so after an
- *  update that changed what a validator accepts, the old shape reached the UI
- *  for up to a day; now an update starts the cache over, at one full download
- *  of the layers. Pass it wherever the cache is restored or saved, or each
- *  side discards the other's. */
+/** Scope the persisted cache to the installed update. Pass the same buster
+ *  wherever it is restored or saved, including background tasks. */
 export const PERSIST_BUSTER = Updates.updateId ?? 'embedded';
 
 /** Seed just the globe's heat before its first observer mounts. The rest of
@@ -175,11 +184,13 @@ export function getLaunchQueryClient(): QueryClient {
         Storage.setItemAsync(HEAT_CACHE_KEY, (previous) => previous ?? JSON.stringify(heat)),
       ).catch(() => {});
     }
-    const state = client.clientState.queries.find((query) => query.queryHash === HEAT_HASH)?.state;
+    const heat = client.clientState.queries.find((query) => query.queryHash === HEAT_HASH);
+    const state = heat?.state;
     if (
+      heat &&
       state?.status === 'success' &&
       Number.isFinite(state.dataUpdatedAt) &&
-      HEATMAP.validate(snapshotData(state.data))
+      validSnapshotQuery(heat)
     ) {
       queryClient.setQueryData(HEATMAP.queryKey, state.data, { updatedAt: state.dataUpdatedAt });
       markLaunch('heat-seeded');

@@ -51,12 +51,13 @@ async function main() {
           'assets/android-icon-monochrome.png',
           'constants/paper.ts',
           'constants/paper-colors.json',
+          'lib/briefing-widget-layout.ts',
           'lib/news-widget.ts',
           'lib/news-widget-layout.ts',
         ].map((filePath) => ({
           type: 'file',
           filePath,
-          reasons: ['Bundled Latest news widget layout'],
+          reasons: ['Bundled widget layout'],
         })),
       ],
       // ios/ and android/ are generated (CNG): a stale local prebuild sits here and
