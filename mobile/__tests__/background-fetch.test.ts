@@ -5,6 +5,7 @@ jest.mock('expo-sqlite/kv-store', () => ({
   default: { getItemSync: jest.fn(() => null), setItemSync: jest.fn(), removeItemSync: jest.fn() },
 }));
 jest.mock('expo-task-manager', () => ({ defineTask: jest.fn() }));
+jest.mock('expo-network', () => ({ getNetworkStateAsync: jest.fn() }));
 jest.mock('expo-background-task', () => ({
   BackgroundTaskResult: { Success: 1, Failed: 2 },
   addExpirationListener: jest.fn(() => ({ remove: jest.fn() })),
@@ -39,6 +40,7 @@ import {
   persistQueryClientSave,
 } from '@tanstack/react-query-persist-client';
 import { addExpirationListener } from 'expo-background-task';
+import { getNetworkStateAsync } from 'expo-network';
 import * as TaskManager from 'expo-task-manager';
 import { FEED_QUERY_KEY, fetchArrival, probeGenerated } from '../lib/arrival';
 import '../lib/background-fetch';
@@ -55,6 +57,7 @@ const feed = (generated: string) =>
 beforeEach(() => {
   jest.clearAllMocks();
   queryClient.clear();
+  jest.mocked(getNetworkStateAsync).mockResolvedValue({ isInternetReachable: true });
 });
 
 it('headless: restores the saved cache, applies the whole build, and saves it back', async () => {
@@ -153,9 +156,33 @@ it('recomputes an unchanged Android widget without writing another verified feed
     queryClient.setQueryData(FEED_QUERY_KEY, feed('same'));
     jest.mocked(probeGenerated).mockResolvedValue('same');
     await task();
-    expect(refreshWidget).toHaveBeenCalledWith();
+    expect(refreshWidget).toHaveBeenCalledWith(false);
     expect(fetchArrival).not.toHaveBeenCalled();
   } finally {
     Platform.OS = os;
   }
+});
+
+it('publishes the current widget status after a failed run and the next unchanged run', async () => {
+  jest.mocked(getNetworkStateAsync).mockResolvedValueOnce({
+    isConnected: true,
+    isInternetReachable: false,
+  });
+  jest.mocked(probeGenerated).mockRejectedValueOnce(new Error('No internet'));
+  expect(await task()).toBe(2);
+  expect(refreshWidget).toHaveBeenLastCalledWith(true);
+
+  queryClient.setQueryData(FEED_QUERY_KEY, feed('same'));
+  jest.mocked(probeGenerated).mockResolvedValue('same');
+  expect(await task()).toBe(1);
+  expect(refreshWidget).toHaveBeenLastCalledWith(false);
+  expect(fetchArrival).not.toHaveBeenCalled();
+});
+
+it('keeps the scheduled result and the last widget status when connectivity cannot be read', async () => {
+  queryClient.setQueryData(FEED_QUERY_KEY, feed('same'));
+  jest.mocked(probeGenerated).mockResolvedValue('same');
+  jest.mocked(getNetworkStateAsync).mockRejectedValueOnce(new Error('No native reading'));
+  expect(await task()).toBe(1);
+  expect(refreshWidget).toHaveBeenCalledWith(undefined);
 });

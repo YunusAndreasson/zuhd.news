@@ -39,7 +39,15 @@ export const newsWidgetDesign = {
     },
   },
   space: SPACING,
-  size: { meta: 12, headline: 15, lead: 19, brand: 15, mark: 26 },
+  size: {
+    meta: 12,
+    headline: 15,
+    lead: 19,
+    /** The single lead on a compact widget at standard text sizes. */
+    compactLead: 22,
+    brand: 15,
+    mark: 26,
+  },
   sectionNames: NEWS_SECTION_NAMES,
   arabicSections: Object.fromEntries(
     options.section.values.map(({ value, nameAr }) => [value, nameAr]),
@@ -114,7 +122,7 @@ export function newsLayoutModel(p: NewsWidgetProps, env: NewsEnvironment, d: Des
   const large = !small && h >= 260;
   const inset = small ? d.space.smPlus : d.space.md;
   const header = scale > 1.4 ? 45 : 38;
-  const meta = Math.ceil((d.size.meta + 5) * scale);
+  const meta = Math.ceil((d.size.meta + (arabic ? 9 : 5)) * scale);
   const statusHeight = (small || env.editWidgetId) && status ? meta : 0;
   const body = Math.max(1, h - header - 2 * d.space.sm - statusHeight);
   const bonus = small ? 0 : large ? 30 : 12;
@@ -124,14 +132,28 @@ export function newsLayoutModel(p: NewsWidgetProps, env: NewsEnvironment, d: Des
   const lead = row + bonus;
   const splitMetadata = small && scale > 1.4;
   const metadataHeight = splitMetadata ? 2 * meta : meta;
-  const hasMetadata = (height: number) =>
-    height >= metadataHeight + Math.ceil((d.size.lead + 6) * scale);
-  const lines = (height: number, size: number, withMetadata: boolean) =>
+  const compactHeadline = scale <= 1.4 ? d.size.compactLead : d.size.lead;
+  // Android's Arabic fallback has a deeper ascent and descent than the Latin face.
+  const headlineLine = (size: number, title: string) =>
+    (size + 4 + (/\p{Script=Arabic}/u.test(title) ? size * 0.65 : 0)) * scale;
+  const compactLine = headlineLine(compactHeadline, stories[0]?.title ?? '');
+  const mapBudget = body - meta - d.space.sm - 4;
+  // Prefer four lines when a map still fits. Three is the minimum.
+  const mapRoom = Math.max(mapBudget - Math.ceil(4 * compactLine), d.space.lg);
+  const compactMapHeight =
+    small && config.images !== false && stories[0]?.image && scale <= 1.4
+      ? Math.min(Math.round((w - 2 * inset) * 0.3), mapRoom, mapBudget - Math.ceil(3 * compactLine))
+      : 0;
+  const compactMap = compactMapHeight >= d.space.lg ? compactMapHeight : 0;
+  const hasMetadata = (height: number, size: number, title: string) =>
+    height >=
+    metadataHeight + Math.ceil(Math.max((d.size.lead + 6) * scale, headlineLine(size, title)));
+  const lines = (height: number, size: number, withMetadata: boolean, title: string) =>
     Math.max(
       1,
       Math.min(
         small ? 4 : 2,
-        Math.floor((height - (withMetadata ? metadataHeight : 0) - 4) / ((size + 4) * scale)),
+        Math.floor((height - (withMetadata ? metadataHeight : 0) - 4) / headlineLine(size, title)),
       ),
     );
   return {
@@ -150,6 +172,7 @@ export function newsLayoutModel(p: NewsWidgetProps, env: NewsEnvironment, d: Des
       inset,
       inner: w - 2 * inset,
       header,
+      statusHeight,
       count,
       row,
       lead,
@@ -157,6 +180,8 @@ export function newsLayoutModel(p: NewsWidgetProps, env: NewsEnvironment, d: Des
       hasMetadata,
       splitMetadata,
       lines,
+      compactHeadline,
+      compactMap,
     },
   };
 }

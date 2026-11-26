@@ -10,6 +10,7 @@ import {
   font,
   foregroundStyle,
   frame,
+  layoutPriority,
   lineLimit,
   padding,
   resizable,
@@ -96,12 +97,49 @@ function LatestNews(
       </Link>
       {rule()}
       {small && status ? txt(status, d.size.meta, 1, 'quiet') : null}
+      {small ? <Spacer minLength={0} /> : null}
       {m.stories.length === 0 ? txt(m.empty, d.size.headline, 3, 'title', true) : null}
       {m.stories.slice(0, count).map((story, index) => {
         const lead = index === 0;
-        const map =
-          lead && !small && m.maps && full && !accessible && !env.isLuminanceReduced && story.image;
+        const map = lead && m.maps && full && !accessible && !env.isLuminanceReduced && story.image;
         const side = large ? 80 : 50;
+        if (small) {
+          return (
+            <Link key={story.url} destination={story.url}>
+              <VStack alignment="leading" spacing={d.space.xxs}>
+                {map && !status ? (
+                  <Image
+                    uiImage={map}
+                    modifiers={[
+                      resizable(),
+                      aspectRatio({ contentMode: 'fill' }),
+                      frame({ maxWidth: 10000, minHeight: d.size.mark, maxHeight: d.size.mark }),
+                      clipped(),
+                      cornerRadius(d.space.xs),
+                    ]}
+                  />
+                ) : null}
+                <VStack alignment="leading" spacing={0} modifiers={[layoutPriority(1)]}>
+                  {txt(
+                    story.title,
+                    accessible ? d.size.lead : d.size.compactLead,
+                    4,
+                    'title',
+                    true,
+                  )}
+                  {accessible ? (
+                    <>
+                      {txt(story.sectionLabel, d.size.meta, 1, 'accent')}
+                      {txt(story.ageLabel, d.size.meta, 1, 'quiet')}
+                    </>
+                  ) : (
+                    txt(story.metadata, d.size.meta, 1, 'accent')
+                  )}
+                </VStack>
+              </VStack>
+            </Link>
+          );
+        }
         return (
           <VStack key={story.url} spacing={large ? d.space.xs : d.space.xxs}>
             {index ? rule() : null}
@@ -111,21 +149,8 @@ function LatestNews(
                 modifiers={[frame({ maxWidth: 10000, alignment: 'leading' })]}
               >
                 <VStack alignment="leading" spacing={0}>
-                  {txt(
-                    story.title,
-                    lead ? d.size.lead : d.size.headline,
-                    small && !accessible ? 4 : 2,
-                    'title',
-                    lead,
-                  )}
-                  {small && accessible ? (
-                    <>
-                      {txt(story.sectionLabel, d.size.meta, 1, 'accent')}
-                      {txt(story.ageLabel, d.size.meta, 1, 'quiet')}
-                    </>
-                  ) : (
-                    txt(story.metadata, d.size.meta, 1, 'accent')
-                  )}
+                  {txt(story.title, lead ? d.size.lead : d.size.headline, 2, 'title', lead)}
+                  {txt(story.metadata, d.size.meta, 1, 'accent')}
                 </VStack>
                 <Spacer />
                 {map ? (

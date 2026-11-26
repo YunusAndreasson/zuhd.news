@@ -73,13 +73,17 @@ module.exports = function withNewsWidgets(config, props) {
           path.join(mod.modRequest.projectRoot, `assets/fonts/SourceSans3-${file}.ttf`),
           path.join(fonts, `widget_source_sans_${weight}.ttf`),
         );
+        // Launchers inflate RemoteViews in a restricted context and may only
+        // load the system font. Set its weight explicitly too.
+        const headlineWeight =
+          weight === 'bold' ? '\n  android:textStyle="bold"\n  android:textFontWeight="600"' : '';
         fs.writeFileSync(
           path.join(layouts, `zuhd_widget_text_${weight}.xml`),
           `<TextView xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/zuhd_widget_text"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:fontFamily="@font/widget_source_sans_${weight}"
+  android:fontFamily="@font/widget_source_sans_${weight}"${headlineWeight}
   android:includeFontPadding="false"
   android:gravity="start"
   android:ellipsize="end" />
