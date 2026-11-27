@@ -218,8 +218,11 @@ const Veil = memo(function Veil({
   //
   // The same first-frame guard as `DeckSlot`'s: a card mounts as a swipe
   // lands, and a JS read of a value the UI thread is writing waits for it.
+  // It closes over `open` as the veil mounted, as `DeckSlot` does its offset:
+  // closed over live, every open and close restarted the mapper.
+  const [openAtMount] = useState(open);
   const shown = useAnimatedStyle(() => {
-    if (globalThis.__RUNTIME_KIND === 1) return { opacity: open ? 0 : 1 };
+    if (globalThis.__RUNTIME_KIND === 1) return { opacity: openAtMount ? 0 : 1 };
     return { opacity: progress.value > 0 ? 0 : 1 };
   });
   return (

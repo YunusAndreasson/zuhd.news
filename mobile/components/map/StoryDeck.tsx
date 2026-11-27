@@ -208,6 +208,7 @@ const DeckSlot = memo(function DeckSlot({
   const { colors } = useTheme();
   const { left, right } = useSafeAreaInsets();
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
+  const [firstOffset] = useState(restOffset);
   // Reanimated runs both styles once on the JS thread when the slot mounts,
   // for their first values. A slot mounted as every swipe landed until slots
   // were recycled (2026-09-25), and still can mid-spring when the window first
@@ -218,8 +219,11 @@ const DeckSlot = memo(function DeckSlot({
   // queued behind it. So the first style is the one the slot rests at,
   // computed from props, and the UI mapper, which starts straight after,
   // draws the real one; a frame drawn before it takes over matches at rest.
-  // `restOffset` only picks that first style; left to the closure it would
-  // restart these mappers on every slot at every landing.
+  // `restOffset` only picks that first style, so the worklets close over the
+  // one the slot mounted with (`firstOffset`). A worklet's closure is its
+  // dependency list on native, and `restOffset` changes on every slot at every
+  // landing: closed over, it restarted all six mappers, and each restart runs
+  // the style again and re-sends the slide's transform.
   //
   // **The slide and the dimming are two styles, and the sheet moves neither**
   // (2026-10-03). As one style, every frame of a story opening or closing
@@ -230,7 +234,7 @@ const DeckSlot = memo(function DeckSlot({
   // off screen were re-faded. The slide reads only the deck's `progress`.
   const slideStyle = useAnimatedStyle(() => {
     if (globalThis.__RUNTIME_KIND === 1) {
-      return { transform: [{ translateX: restOffset * pitch }] };
+      return { transform: [{ translateX: firstOffset * pitch }] };
     }
     return { transform: [{ translateX: (position - progress.value) * pitch }] };
   });
@@ -248,7 +252,7 @@ const DeckSlot = memo(function DeckSlot({
   // while it moves, so a fade tracking it drew nothing and cost a frame each.
   const dimStyle = useAnimatedStyle(() => {
     if (globalThis.__RUNTIME_KIND === 1) {
-      return { opacity: (1 - PEEK_OPACITY) * Math.min(1, Math.abs(restOffset)) };
+      return { opacity: (1 - PEEK_OPACITY) * Math.min(1, Math.abs(firstOffset)) };
     }
     const away = Math.min(1, Math.abs(position - progress.value));
     const fade = peekFade && peekFade.value > 0.5 ? 1 : 0;

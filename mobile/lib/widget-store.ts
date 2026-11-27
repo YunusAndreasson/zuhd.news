@@ -200,8 +200,12 @@ function update(change: (s: State) => void) {
   return enqueue(async () => {
     if (token !== generation) return;
     const s = read();
+    const before = JSON.stringify(s);
     change(s);
-    storage().setItemSync(STORE, JSON.stringify(s));
+    // Most passes change nothing: every return to the app asks for one, and a
+    // launch for two. A synchronous commit is the dearest thing here.
+    const after = JSON.stringify(s);
+    if (after !== before) storage().setItemSync(STORE, after);
     widgetEditionChanges.emit();
     await render(s, token);
     await renderNews(s, token);
@@ -255,9 +259,13 @@ export const widgetFeedError = () =>
     s.newsError = true;
   });
 
-/** Existing installations can paint headlines from their durable app feed. */
-export function seedWidgetNews(feed: FeedResponse | null) {
-  if (!feed || !widgetSupported() || read().news) return;
+/** Existing installations can paint headlines from their durable app feed.
+ *  `load` is asked only when the feed will be used: after the first seed it
+ *  never is, and the feed is a whole file read, parsed and validated. */
+export function seedWidgetNews(load: () => FeedResponse | null) {
+  if (!widgetSupported() || read().news) return;
+  const feed = load();
+  if (!feed) return;
   return update((s) => {
     if (!s.news) s.news = selectNewsWidget(feed);
   });

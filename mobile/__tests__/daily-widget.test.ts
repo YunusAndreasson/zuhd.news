@@ -2,6 +2,7 @@ import type { WidgetCandidate } from '@shared/types';
 import {
   closeMove,
   datedCard,
+  widgetDate,
   widgetEdition,
   widgetFace,
   widgetRoute,
@@ -10,9 +11,9 @@ import {
 import { redirectSystemPath } from '../app/+native-intent';
 
 const date = '2026-11-23',
-  generated = date + 'T06:00:00Z',
+  generated = `${date}T06:00:00Z`,
   revision = 'a'.repeat(64);
-const now = Date.parse(date + 'T17:00:00Z'),
+const now = Date.parse(`${date}T17:00:00Z`),
   day = 86400000;
 const close: NonNullable<WidgetCandidate['close']> = {
   id: 'mkt:tadawul',
@@ -131,7 +132,7 @@ it('resolves an exact generation again on tap, including cached old editions and
   expect(widgetTap(edition, edition, live, true, true, now + day)).toBe('briefing');
   expect(widgetTap(edition, edition, live, false, false, now + day)).toBe('edition');
   expect(
-    widgetTap(edition, edition, { ...live, generated: date + 'T07:00:00Z' }, false, true, now),
+    widgetTap(edition, edition, { ...live, generated: `${date}T07:00:00Z` }, false, true, now),
   ).toBe('edition');
   expect(widgetTap(edition, { ...edition, audio: undefined }, live, false, true, now)).toBe(
     'edition',
@@ -140,10 +141,30 @@ it('resolves an exact generation again on tap, including cached old editions and
 it('only accepts dated widget routes and distinguishes a menu preview from a real open', () => {
   const path = face().url!;
   expect(widgetRoute(path)).toEqual({ date, revision, target: 'briefing' });
-  expect(redirectSystemPath({ path, initial: true })).toBe('/?widget=' + encodeURIComponent(path));
-  expect(redirectSystemPath({ path: path + '?preview=1', initial: false })).toBe(
-    '/?widget=' + encodeURIComponent(path) + '&widgetPreview=1',
+  expect(redirectSystemPath({ path, initial: true })).toBe(`/?widget=${encodeURIComponent(path)}`);
+  expect(redirectSystemPath({ path: `${path}?preview=1`, initial: false })).toBe(
+    `/?widget=${encodeURIComponent(path)}&widgetPreview=1`,
   );
   expect(widgetRoute(path.replace(date, '2026-02-30'))).toBeNull();
   expect(widgetRoute(path.replace(revision, 'story-title'))).toBeNull();
+});
+
+// One formatter per shape is held for the session; each prints what
+// `toLocaleDateString` printed when it built one per call.
+it('prints a date as toLocaleDateString did, in every shape', () => {
+  for (const day of ['2026-11-23', '2026-01-01', '2027-02-28']) {
+    for (const year of [true, false]) {
+      for (const spoken of [true, false]) {
+        expect(widgetDate(day, year, spoken)).toBe(
+          new Date(day).toLocaleDateString('en-GB', {
+            timeZone: 'UTC',
+            day: 'numeric',
+            month: spoken ? 'long' : 'short',
+            ...(year && { year: 'numeric' }),
+          }),
+        );
+      }
+    }
+  }
+  expect(widgetDate('never')).toBe(new Date('never').toLocaleDateString('en-GB'));
 });

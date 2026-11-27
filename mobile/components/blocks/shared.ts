@@ -81,11 +81,15 @@ export function formatBlockNumber(n: number, unit?: string, decimals?: number): 
 
 /** Mount-time draw progress for a chart block: a `0 → 1` shared value that
  *  drives Skia path `end` reveals. Resolves instantly to `1` under reduced
- *  motion / battery saver (via `useReducedMotion`). Returned value is inert
- *  unless wired to an animated prop — blocks that don't reveal a path simply
- *  don't call this. */
-export function useChartDrawProgress(duration: number = ANIMATION.slow): SharedValue<number> {
-  const reduceMotion = useReducedMotion();
+ *  motion / battery saver (via `useReducedMotion`), and for a chart that
+ *  mounts where nobody is looking (`drawn`): a canvas redraws on every frame
+ *  of a reveal, seen or not. Returned value is inert unless wired to an
+ *  animated prop — blocks that don't reveal a path simply don't call this. */
+export function useChartDrawProgress(
+  duration: number = ANIMATION.slow,
+  drawn = false,
+): SharedValue<number> {
+  const reduceMotion = useReducedMotion() || drawn;
   const progress = useSharedValue(reduceMotion ? 1 : 0);
   useEffect(() => {
     if (reduceMotion) {

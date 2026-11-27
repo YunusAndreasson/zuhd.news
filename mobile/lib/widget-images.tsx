@@ -26,7 +26,7 @@ export async function validWidgetImage(file: File) {
 }
 
 export function publishWidgetImage(file: File, bytes: Uint8Array) {
-  const part = new File(file.parentDirectory, file.name + '.part');
+  const part = new File(file.parentDirectory, `${file.name}.part`);
   part.writeSync(bytes);
   part.moveSync(file, { overwrite: true });
 }

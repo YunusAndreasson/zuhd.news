@@ -264,6 +264,29 @@ export function findCountry(
   return null;
 }
 
+const placeCountries = new Map<string, GeoJSON.Feature | null>();
+/** Emptied whole when it fills: a place is cheap to ask again, once. */
+const PLACE_COUNTRIES_MAX = 1024;
+
+/**
+ * `findCountry`, asked once per place. The globe asks for every story again
+ * on each arrival and each return to the app, and the countries do not change
+ * while the app runs, so only a place's first ask walks the polygons.
+ */
+export function countryOfPlace(
+  lat: number,
+  lng: number,
+  location?: string | null,
+): GeoJSON.Feature | null {
+  const key = `${lat},${lng},${location?.toLowerCase() ?? ''}`;
+  const known = placeCountries.get(key);
+  if (known !== undefined) return known;
+  const found = findCountry(lat, lng, location);
+  if (placeCountries.size >= PLACE_COUNTRIES_MAX) placeCountries.clear();
+  placeCountries.set(key, found);
+  return found;
+}
+
 // ── Clip-angle math ────────────────────────────────────────────────────────
 
 /** Clip angle for a country's spherical area — smaller countries get tighter

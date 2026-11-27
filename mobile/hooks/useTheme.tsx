@@ -218,8 +218,6 @@ export function ThemeProvider({
     const observe = () => {
       if (!current) return;
       const snapshot = publisherSnapshot();
-      if (offerHistory().registration !== snapshot.status)
-        saveOffer({ registration: snapshot.status });
       const effective = publisherEnabled(consent, snapshot);
       void analytics.register({ notifications_enabled: effective });
       observePublisher(

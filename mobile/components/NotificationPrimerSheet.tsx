@@ -2,6 +2,7 @@ import { memo, useRef } from 'react';
 import { AccessibilityInfo, Image, StyleSheet, View } from 'react-native';
 import { RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { afterwards } from '../lib/afterwards';
 import { Pressable, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -59,12 +60,10 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
           onPress={async () => {
             if (busy.current) return;
             busy.current = true;
-            try {
-              await onContinue();
-            } finally {
+            await afterwards(onContinue, () => {
               busy.current = false;
               sheetRef.current?.dismiss();
-            }
+            });
           }}
         >
           <Text variant="body" tone="inverse" maxFontSizeMultiplier={0}>

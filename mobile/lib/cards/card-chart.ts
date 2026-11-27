@@ -119,7 +119,7 @@ export function citedLabels(
   const sorted = [...marks].sort((a, b) => a.x - b.x);
   const crowds: { x0: number; x1: number; label: string }[] = [];
   for (const mark of sorted) {
-    const last = crowds[crowds.length - 1];
+    const last = crowds.at(-1);
     const reach = last ? ((last.label.length + mark.label.length) * charWidth) / 2 + gap : 0;
     if (last && mark.x - (last.x0 + last.x1) / 2 < reach) {
       last.label += `${CITED_JOIN}${mark.label}`;

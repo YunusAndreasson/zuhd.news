@@ -109,7 +109,7 @@ function RootLayout() {
   // a launch there waits for the reader to bring it up.
   useEffect(() => {
     if (AppState.currentState === 'active') {
-      void seedWidgetNews(feedCache.readSync());
+      void seedWidgetNews(() => feedCache.readSync());
       void observeWidget();
       void refreshWidget();
       sendColdOpen();

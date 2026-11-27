@@ -135,9 +135,11 @@ export function SheetHero({ entering, eyebrow, focal, tint, secondary }: SheetHe
     <Animated.View entering={entering}>
       {/* Lowercase on screen, as every other small-caps label is: the
           conflict and GDACS eyebrows arrive ALL CAPS from their data, and small
-          caps draw a capital at full height. The spoken label keeps the case. */}
+          caps draw a capital at full height. The spoken label keeps the case.
+          `toLowerCase`, never the locale's: on a Turkish phone that one turns
+          an English `I` into a dotless `ı`. */}
       <Text variant="labelXs" tone="secondary" style={styles.eyebrow} accessibilityLabel={eyebrow}>
-        {eyebrow.toLocaleLowerCase()}
+        {eyebrow.toLowerCase()}
       </Text>
       <Text
         variant="display"

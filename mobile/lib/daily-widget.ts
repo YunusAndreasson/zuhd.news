@@ -107,13 +107,25 @@ export function widgetEdition(
   return result.close || result.audio || result.pending ? result : undefined;
 }
 
+/** One formatter per shape of date, kept for the session: `toLocaleDateString`
+ *  builds one on every call, and a redraw asks three times a face for up to
+ *  six faces, each time the app comes to the front. */
+const widgetDateFormats = new Map<string, Intl.DateTimeFormat>();
 export function widgetDate(date: string, year = true, spoken = false) {
-  return new Date(date).toLocaleDateString('en-GB', {
-    timeZone: 'UTC',
-    day: 'numeric',
-    month: spoken ? 'long' : 'short',
-    ...(year && { year: 'numeric' }),
-  });
+  const shape = `${year}${spoken}`;
+  let format = widgetDateFormats.get(shape);
+  if (!format) {
+    format = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'UTC',
+      day: 'numeric',
+      month: spoken ? 'long' : 'short',
+      ...(year && { year: 'numeric' }),
+    });
+    widgetDateFormats.set(shape, format);
+  }
+  const day = new Date(date);
+  // `format` throws on a date that is none, where `toLocaleDateString` said so.
+  return Number.isNaN(day.getTime()) ? 'Invalid Date' : format.format(day);
 }
 export function closeMove(c: Close) {
   const first = c.observations?.[0];
@@ -195,7 +207,7 @@ export function widgetFace(
         : action;
   const url = `zuhd-news:///widget/${playable ? 'briefing' : 'edition'}/${e.edition}/${e.revision}`;
   const spokenDate = widgetDate(e.edition, true, true);
-  const spoken = `Daily briefing, ${spokenDate}.${duration ? ' ' + duration.replace(' min', ' minutes') + '.' : ''}`;
+  const spoken = `Daily briefing, ${spokenDate}.${duration ? ` ${duration.replace(' min', ' minutes')}.` : ''}`;
   const target = playable ? 'Open and play.' : 'Open saved edition.';
   const c = e.close;
   return {

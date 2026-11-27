@@ -111,6 +111,40 @@ test('reads an index’s day from its last two sessions, not from a close quoted
   expect(ownMoves(open).day).toBeCloseTo(0.498, 2);
 });
 
+// One exchange is read by its day, its week and its month, in its own
+// currency and in dollars, and again for its card and the world's line. Its
+// sessions are worked out once, and a card still holds arrays of its own.
+describe("an exchange's sessions", () => {
+  it('are read once for every reading of the exchange', () => {
+    const exchange: Exchange = { ...e, series: { ...e.series } };
+    const parse = jest.spyOn(Date, 'parse');
+    try {
+      const first = ownMoves(exchange);
+      const asked = parse.mock.calls.length;
+      expect(asked).toBeGreaterThan(0);
+      expect(ownMoves(exchange)).toEqual(first);
+      exchangeCard(exchange);
+      // Only the card's own questions (stale, as-of) are left to ask.
+      const sessions = exchange.series.values.length;
+      expect(parse.mock.calls.length - asked).toBeLessThan(sessions);
+    } finally {
+      parse.mockRestore();
+    }
+  });
+
+  it('are not the arrays a card holds', () => {
+    const exchange: Exchange = { ...e, series: { ...e.series } };
+    const one = exchangeCard(exchange);
+    const two = exchangeCard(exchange);
+    if (one.kind !== 'reading' || two.kind !== 'reading') throw new Error('not a reading');
+    expect(one.series?.values).toEqual(two.series?.values);
+    expect(one.series?.values).not.toBe(two.series?.values);
+    expect(one.series?.periods).not.toBe(two.series?.periods);
+    one.series?.values.push(1);
+    expect(exchangeCard(exchange)).toEqual(two);
+  });
+});
+
 describe('an index in US dollars', () => {
   // Ten sessions to Friday 9 October, and a rate for every calendar day.
   const dates = [

@@ -89,7 +89,7 @@ export function WidgetSetup({ done }: { done: () => void }) {
         }
         disabled={!face.url}
         onPress={() => {
-          if (face.url) void Linking.openURL(face.url + '?preview=1');
+          if (face.url) void Linking.openURL(`${face.url}?preview=1`);
         }}
         style={[styles.preview, { backgroundColor: colors.sheetBg, borderColor: colors.rule }]}
       >

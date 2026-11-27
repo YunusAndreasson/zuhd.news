@@ -1634,8 +1634,14 @@ export default function HomeScreen() {
     if (item) handleNowPress(item);
   }, [handleNowPress]);
 
-  const handleMenuDismissToast = (message: string) =>
-    toastRef.current?.show(message, undefined, 'top');
+  // Held: this screen is not compiled, so a handler written inline is a new
+  // one on every commit, and a memoized child handed it renders with each.
+  const handleMenuDismissToast = useCallback(
+    (message: string) => toastRef.current?.show(message, undefined, 'top'),
+    [],
+  );
+  const handleExplore = useCallback(() => setExplored(true), []);
+  const handleWidgetDismiss = useCallback(() => setPlaybackRequest(null), []);
   const handleMenuDismiss = useCallback(() => {
     menuClosedAtRef.current = Date.now();
     setMenuOpen(false);
@@ -2369,7 +2375,7 @@ export default function HomeScreen() {
       <Screen>
         <Stack fill align="center" justify="center" gap="row">
           <Text variant="body">No opening report available.</Text>
-          <Pressable accessibilityRole="button" onPress={() => setExplored(true)}>
+          <Pressable accessibilityRole="button" onPress={handleExplore}>
             <Text variant="bodyEmphasis">Explore the globe</Text>
           </Pressable>
         </Stack>
@@ -2450,7 +2456,7 @@ export default function HomeScreen() {
           centerX={screenWidth / 2}
           centerY={layout.centerY}
           reduceMotion={reduceMotion}
-          onExplore={opening ? () => setExplored(true) : undefined}
+          onExplore={opening ? handleExplore : undefined}
           onTap={handleCountryPress}
           onZoomSettle={handleZoomSettle}
           onImpact={hapticImpact}
@@ -2524,7 +2530,7 @@ export default function HomeScreen() {
         <BriefingChrome
           ref={briefingChromeRef}
           {...playerSelection}
-          onWidgetDismiss={() => setPlaybackRequest(null)}
+          onWidgetDismiss={handleWidgetDismiss}
           onUnavailable={handleBriefingUnavailable}
           onPlaybackError={handleBriefingPlaybackError}
           onVisibilityChange={setBriefingVisible}

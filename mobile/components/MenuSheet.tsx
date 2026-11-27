@@ -425,7 +425,7 @@ export const MenuSheet = memo(function MenuSheet({
   // A detail covers its originating list without unmounting it. Keeping the
   // native viewport and virtualized window also preserves filters and exact
   // scroll position; rebuilding a deep list clamps to its first batch.
-  const parentListKey = [...nav.stack].reverse().find((key) => isGroupKey(key) || isHazardKey(key));
+  const parentListKey = nav.stack.findLast((key) => isGroupKey(key) || isHazardKey(key));
   const keptGroup =
     parentListKey && isGroupKey(parentListKey)
       ? catalog.find((group) => group.key === parentListKey)

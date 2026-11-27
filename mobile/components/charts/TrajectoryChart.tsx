@@ -58,6 +58,8 @@ interface TrajectoryChartProps {
     /** Caption rendered top-left of the chart. */
     label?: string;
   };
+  /** Mounted off screen, on a page not in front: no draw-in. */
+  drawn?: boolean;
   /** Force Y-axis lower bound (else computed from data + thresholds). */
   minY?: number;
   /** Force Y-axis upper bound. */
@@ -152,6 +154,7 @@ export const TrajectoryChart = memo(function TrajectoryChart({
   endYear,
   thresholds,
   comparison,
+  drawn,
   minY,
   maxY,
   formatY,
@@ -163,7 +166,7 @@ export const TrajectoryChart = memo(function TrajectoryChart({
   // estimate with the exact content width after the first layout pass.
   const [width, setWidth] = useState(() => windowWidth - SPACING.screenPadding * 2);
 
-  const progress = useChartDrawProgress(ANIMATION.long);
+  const progress = useChartDrawProgress(ANIMATION.long, drawn);
 
   const { path, comparisonPath, yScale, computedMinY, computedMaxY, endPoint, lines } =
     useMemo(() => {

@@ -177,9 +177,9 @@ import {
   ANCHOR_COUNTRY_AREA,
   ANCHOR_NAMES_EXTRA,
   clipAngleForCountry,
+  countryOfPlace,
   DECAY_LAMBDA,
   FRAMING_WIDEST,
-  findCountry,
   formatLocalTime,
   getSunPosition,
   invalidateSunCaches,
@@ -2681,7 +2681,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     return articles.map((a) => {
       const coords = getCoords(a);
       if (!coords) return null;
-      const country = findCountry(coords[0], coords[1], a.location);
+      const country = countryOfPlace(coords[0], coords[1], a.location);
       const countryName = country?.properties?.name ?? null;
       const rank = ranks.get(a.slug) ?? STORY_UNKNOWN_RANK;
       const ageHours = Math.max(0, (now - articleTime(a)) / HOUR_MS);
@@ -3117,7 +3117,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     if (!first2) return [];
     const logMax = Math.log(first2.total + 1);
     return sorted.map((z) => {
-      const country = findCountry(z.lat, z.lng);
+      const country = countryOfPlace(z.lat, z.lng);
       return {
         lat: z.lat,
         lng: z.lng,

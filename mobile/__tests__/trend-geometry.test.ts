@@ -1,6 +1,7 @@
 import {
   buildTrendLinePath,
   buildTrendXLayout,
+  settledWidth,
   trendLineVertices,
 } from '../components/blocks/trend-geometry';
 import { formatTickLabel, parseFlexibleDate, periodDates } from '../lib/date-format';
@@ -181,5 +182,29 @@ describe('trend chart geometry', () => {
     const ticks = [new Date('2026-01-01T00:00:00Z'), new Date('2026-01-02T00:00:00Z')];
 
     expect(formatTickLabel(ticks[0] as Date, ticks)).toBe('JAN 1');
+  });
+});
+
+// The first paint draws at the column's arithmetic width; layout answers on
+// the pixel grid. Redrawing for a difference no pixel shows built every chart
+// twice on most Android phones.
+describe('settledWidth', () => {
+  it('keeps the width drawn at when layout differs by less than a pixel', () => {
+    // 1080 px at 2.625: the column is 383.4286 pt, and Yoga lays it out from
+    // pixel 37 to pixel 1043.
+    const drawn = 1080 / 2.625 - 28;
+    const measured = (1043 - 37) / 2.625;
+    expect(settledWidth(drawn, measured, 2.625)).toBe(drawn);
+    expect(settledWidth(drawn, Math.fround(drawn), 3.5)).toBe(drawn);
+  });
+
+  it('takes a width that differs by a pixel or more', () => {
+    expect(settledWidth(365, 357, 3)).toBe(357);
+    expect(settledWidth(365, 365.5, 2)).toBe(365.5);
+    expect(settledWidth(383.4, 383.0, 2.625)).toBe(383.0);
+  });
+
+  it('takes the first real width when nothing was drawn', () => {
+    expect(settledWidth(0, 0.3, 2)).toBe(0.3);
   });
 });

@@ -41,7 +41,7 @@ const fmtMonth = utcFormat('%b');
  */
 export function formatTickLabel(d: Date, ticks: Date[]): string {
   const first = ticks[0];
-  const last = ticks[ticks.length - 1];
+  const last = ticks.at(-1);
   const span = first && last ? Math.abs(+last - +first) : 0;
   if (span >= 365 * DAY_MS * 2) return fmtYear(d).toUpperCase();
   if (span >= 60 * DAY_MS) {
@@ -55,19 +55,52 @@ const ISO_DAY = /^(\d{4})-(\d{2})-(\d{2})$/;
 const DAY_LABEL = /^([A-Z][a-z]{2}) (\d{1,2})$/;
 const MONTH_LABEL = /^([A-Z][a-z]{2}) (\d{4})$/;
 
+/** What `periodDays` made of an array of labels, by the year it was read in.
+ *  Held weakly, so for as long as the array is: a payload's, or a card's. */
+const readDays = new WeakMap<
+  readonly string[],
+  Map<number, { length: number; days: readonly (number | null)[] }>
+>();
+
 /**
  * Each period as a day number (days since the epoch), or null where the label
  * is not a day. The last label is placed in `year`, and the year steps back
  * whenever the month increases going backwards (a series running Dec → Jan).
+ *
+ * An array of labels is read once a year it is asked in. The same series is
+ * asked for by its week, its day, its month and its line, by its row, its
+ * card and its group: opening the menu read some 29,000 labels to learn 171
+ * series. The answer is shared, so it is not to be written to; an array that
+ * has grown or shrunk since is read again.
  */
-export function periodDays(periods: readonly string[], year: number): (number | null)[] {
+export function periodDays(periods: readonly string[], year: number): readonly (number | null)[] {
+  let byYear = readDays.get(periods);
+  const known = byYear?.get(year);
+  if (known && known.length === periods.length) return known.days;
+  const days = readPeriodDays(periods, year);
+  if (!byYear) {
+    byYear = new Map();
+    readDays.set(periods, byYear);
+  }
+  byYear.set(year, { length: periods.length, days });
+  return days;
+}
+
+const DIGIT_0 = 48;
+const DIGIT_9 = 57;
+
+function readPeriodDays(periods: readonly string[], year: number): (number | null)[] {
   const out: (number | null)[] = new Array(periods.length).fill(null);
   let y = year;
   let laterMonth: number | null = null;
   for (let i = periods.length - 1; i >= 0; i--) {
     const label = periods[i] ?? '';
-    const iso = ISO_DAY.exec(label);
-    if (iso) {
+    // A label is tried as the one shape its first character allows: a date
+    // starts with a digit and a month with a letter.
+    const first = label.charCodeAt(0);
+    if (first >= DIGIT_0 && first <= DIGIT_9) {
+      const iso = ISO_DAY.exec(label);
+      if (!iso) return out;
       out[i] = Date.UTC(Number(iso[1]), Number(iso[2]) - 1, Number(iso[3])) / DAY_MS;
       y = Number(iso[1]);
       laterMonth = Number(iso[2]) - 1;
@@ -100,7 +133,7 @@ export function periodDates(periods: readonly string[], now: number = Date.now()
   if (periods.length === 0) return null;
   const year = new Date(now).getUTCFullYear();
   let days = periodDays(periods, year);
-  const last = days[days.length - 1];
+  const last = days.at(-1);
   if (last != null && last * DAY_MS > now + DAY_MS) days = periodDays(periods, year - 1);
   if (days.every((day) => day !== null)) return days.map((day) => new Date((day ?? 0) * DAY_MS));
   const dates: Date[] = [];

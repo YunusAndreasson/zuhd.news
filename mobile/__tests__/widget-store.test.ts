@@ -7,6 +7,7 @@ import {
   eraseWidget,
   observeWidget,
   refreshWidget,
+  seedWidgetNews,
   syncWidget,
   widgetDetail,
   widgetPreview,
@@ -175,6 +176,31 @@ it('preserves observed connectivity across feed commits and redraws without a ne
   expect(widgetPreview().action).toBe('Audio needs internet');
   await refreshWidget(false);
   expect(widgetPreview().action).toBe('Daily briefing');
+});
+
+// Every return to the app asks for a pass, and a launch for two. Most change
+// nothing, and the store's commit is synchronous, on the JS thread.
+it('commits the store only when a pass changed it', async () => {
+  await syncWidget(feed('2026-11-23T15:55Z', candidate));
+  const commits = jest.spyOn(mockData, 'set');
+  await refreshWidget();
+  await refreshWidget(false);
+  expect(commits).not.toHaveBeenCalled();
+  await refreshWidget(true);
+  expect(commits).toHaveBeenCalledTimes(1);
+  expect(widgetPreview().action).toBe('Audio needs internet');
+});
+
+// The launch offers the cached feed to a widget that has no headlines yet.
+// Reading it is the whole file, parsed and validated, so it is not read for a
+// widget that already has them.
+it('reads the feed to seed headlines only while it has none', async () => {
+  const load = jest.fn(() => feed('2026-11-23T15:55Z', candidate));
+  await seedWidgetNews(load);
+  expect(load).toHaveBeenCalledTimes(1);
+  await syncWidget(feed('2026-11-23T15:56Z', candidate));
+  await seedWidgetNews(load);
+  expect(load).toHaveBeenCalledTimes(1);
 });
 
 it('expires the Android snapshot at its original verification deadline', async () => {

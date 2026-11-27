@@ -212,7 +212,27 @@ const RATE_SLACK_DAYS = 4;
  * a rate is kept: a move bridged over a gap in the rates would be the index's
  * move at one rate.
  */
-function ratedSessions(e: Exchange): { local: number[]; usd: number[]; periods: string[] } | null {
+type RatedSessions = {
+  readonly local: readonly number[];
+  readonly usd: readonly number[];
+  readonly periods: readonly string[];
+} | null;
+/** An exchange's sessions as first read, for as long as the exchange is held.
+ *  Its row asks for them by its day, its week and its month, in its own
+ *  currency and in dollars, and the world's line asks again: seven readings
+ *  of one exchange for one row, each a date parsed per session. The answer is
+ *  shared, and so is not to be written to; shared, its periods are also one
+ *  array to `periodDays`, which then reads them once. */
+const ratedByExchange = new WeakMap<Exchange, { rated: RatedSessions }>();
+function ratedSessions(e: Exchange): RatedSessions {
+  let known = ratedByExchange.get(e);
+  if (!known) {
+    known = { rated: readRatedSessions(e) };
+    ratedByExchange.set(e, known);
+  }
+  return known.rated;
+}
+function readRatedSessions(e: Exchange): RatedSessions {
   const { fx, currency } = e;
   if (!fx || !currency || currency === 'USD') return null;
   const dates = e.series.dates;
@@ -282,7 +302,17 @@ function spanMoves(values: readonly number[], periods: readonly string[], year: 
 
 /** The sessions an index is quoted for. A build may append a cached quote
  *  under today's date: nothing newer than the provider's as-of date is read. */
-function quotedSessions(e: Exchange): { values: number[]; periods: string[] } {
+type QuotedSessions = { readonly values: readonly number[]; readonly periods: readonly string[] };
+const quotedByExchange = new WeakMap<Exchange, QuotedSessions>();
+function quotedSessions(e: Exchange): QuotedSessions {
+  let known = quotedByExchange.get(e);
+  if (!known) {
+    known = readQuotedSessions(e);
+    quotedByExchange.set(e, known);
+  }
+  return known;
+}
+function readQuotedSessions(e: Exchange): QuotedSessions {
   const asOf = Date.parse(e.asOf);
   const dates = e.series.dates;
   const values: number[] = [];
@@ -320,7 +350,7 @@ export function dollarMoves(e: Exchange): SpanMoves | null {
 export function sessionLevels(
   e: Exchange,
   dollars: boolean,
-): { days: (number | null)[]; values: number[] } | null {
+): { days: readonly (number | null)[]; values: readonly number[] } | null {
   const year = yearOf(e.asOf, new Date().getUTCFullYear());
   if (dollars && e.currency !== 'USD') {
     const rated = ratedSessions(e);
@@ -373,9 +403,11 @@ export function exchangeCard(e: Exchange): SwipeCard {
       : (dollarLine(e) ?? recordLine(values, periods) ?? 'Latest quoted session'),
     why: [e.standing || e.blurb, e.recent].filter(Boolean).join('\n\n'),
     sourceLabel: e.sourceLabel,
+    // The card's own arrays: the sessions are shared with every other reading
+    // of this exchange (`quotedSessions`), and a card's series is its own.
     series: {
-      values,
-      periods,
+      values: [...values],
+      periods: [...periods],
       label: 'Index points',
       unit: 'points',
     },

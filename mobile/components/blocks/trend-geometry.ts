@@ -72,7 +72,7 @@ export function buildTrendXLayout({
   // A daily series can end on the day's live reading under the same label as
   // its last close (`Oct 10`, `Oct 10`): the same day, later, so half a day
   // on. A repeat anywhere else is a malformed series and takes the fallback.
-  const final = dates[dates.length - 1];
+  const final = dates.at(-1);
   const before = dates[dates.length - 2];
   if (final && before && final.getTime() === before.getTime()) {
     dates[dates.length - 1] = new Date(final.getTime() + DAY_MS / 2);
@@ -82,7 +82,7 @@ export function buildTrendXLayout({
   }
 
   const first = dates[0];
-  const last = dates[dates.length - 1];
+  const last = dates.at(-1);
   if (!first || !last) return fallback();
 
   // Chart periods are date-only editorial observations. UTC keeps their
@@ -113,6 +113,19 @@ export function buildTrendXLayout({
     positions: dates.map((date) => scale(date)),
     ticks,
   };
+}
+
+/**
+ * The width to draw at once layout has measured the plot: the width already
+ * drawn at, when the two are within a device pixel.
+ *
+ * The first paint draws at the column's width as arithmetic gives it, and
+ * layout answers on the pixel grid, a fraction of a point away at most Android
+ * densities (383.43 against 383.24 at 2.625). Taking that answer drew the
+ * whole chart a second time, to move its right edge by half a pixel.
+ */
+export function settledWidth(drawn: number, measured: number, pixelRatio: number): number {
+  return drawn > 0 && Math.abs(drawn - measured) * pixelRatio < 1 ? drawn : measured;
 }
 
 /** How a line joins its observations: straight from one to the next, or

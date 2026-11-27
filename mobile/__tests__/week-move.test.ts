@@ -46,6 +46,44 @@ describe('periodDays', () => {
   it('does not read a month label as a day', () => {
     expect(periodDays(['Jun 2026', 'Jul 2026'], 2026)).toEqual([null, null]);
   });
+
+  // A series is asked for by its day, its week, its month and its line, by
+  // its row, its card and its group. Its labels are read once.
+  it('reads an array of labels once a year it is asked in', () => {
+    const labels = ['Dec 30', 'Dec 31', 'Jan 1'];
+    const days = periodDays(labels, 2027);
+    expect(periodDays(labels, 2027)).toBe(days);
+    // The same labels in another array are another series.
+    expect(periodDays([...labels], 2027)).not.toBe(days);
+    expect(periodDays([...labels], 2027)).toEqual(days);
+    // Read in another year they are other days, and both answers are kept.
+    const earlier = periodDays(labels, 2026);
+    expect(earlier[2]).toBe(days[2]! - 365);
+    expect(periodDays(labels, 2027)).toBe(days);
+    expect(periodDays(labels, 2026)).toBe(earlier);
+  });
+
+  it('reads an array again once it has grown or shrunk', () => {
+    const labels = ['2026-09-04', '2026-09-11'];
+    const two = periodDays(labels, 2026);
+    labels.push('2026-09-18');
+    const three = periodDays(labels, 2026);
+    expect(three).toHaveLength(3);
+    expect(three[2]! - three[1]!).toBe(WEEK_DAYS);
+    expect(two).toHaveLength(2);
+    labels.length = 1;
+    expect(periodDays(labels, 2026)).toEqual([two[0]]);
+  });
+
+  it('stops at a label that is neither shape, as it did', () => {
+    expect(periodDays(['Sep 4', '2026-9-11', 'Sep 18'], 2026)).toEqual([
+      null,
+      null,
+      Date.UTC(2026, 8, 18) / 86_400_000,
+    ]);
+    expect(periodDays(['Sep 4', '', 'Sep 18'], 2026)[0]).toBeNull();
+    expect(periodDays(['Sep 4', 'Foo 11', 'Sep 18'], 2026)[0]).toBeNull();
+  });
 });
 
 describe('weekMove', () => {

@@ -9,7 +9,6 @@ export interface OfferHistory {
   promptChoice?: boolean;
   generation?: number;
   origin?: PrimerSource;
-  registration?: 'accepted' | 'failed' | 'pending' | 'removed';
 }
 export type OfferEntry =
   | { source: 'opened_report' }

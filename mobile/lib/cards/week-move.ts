@@ -144,7 +144,7 @@ export function gaugeSpan(card: SwipeCard, span: number, now = Date.now()): numb
 export function gaugeLevels(
   card: SwipeCard,
   now = Date.now(),
-): { days: (number | null)[]; values: number[] } | null {
+): { days: readonly (number | null)[]; values: number[] } | null {
   if (card.kind !== 'reading' || !card.series || card.series.multi) return null;
   if (card.id.startsWith('ai:')) return null;
   const year = yearOf(card.asOf, new Date(now).getUTCFullYear());

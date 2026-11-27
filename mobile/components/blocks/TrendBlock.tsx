@@ -1,7 +1,14 @@
 import type { TrendAnnotation, TrendHighlight, TrendSeries } from '@shared/types';
 import { scaleLinear } from 'd3-scale';
 import { memo, type ReactNode, useCallback, useMemo, useState } from 'react';
-import { type AccessibilityActionEvent, StyleSheet, useWindowDimensions, View } from 'react-native';
+import {
+  type AccessibilityActionEvent,
+  type LayoutChangeEvent,
+  PixelRatio,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import {
   GestureDetector,
   type PanGestureConfig,
@@ -46,6 +53,7 @@ import {
 import {
   buildTrendLinePath,
   buildTrendXLayout,
+  settledWidth,
   type TrendShape,
   type TrendTimeTick,
   trendLineVertices,
@@ -622,9 +630,14 @@ export const TrendBlock = memo(function TrendBlock({
   const progress = useChartDrawProgress();
 
   const { width: windowWidth } = useWindowDimensions();
-  // Match the article column on the first paint; onLayout supplies the exact
-  // measured width after layout settles.
+  // Match the article column on the first paint; onLayout supplies the
+  // measured width after layout settles, where it differs by a pixel or more
+  // (`settledWidth`).
   const [width, setWidth] = useState(() => readingWidth(windowWidth) - SPACING.articlePadding * 2);
+  const measure = useCallback((e: LayoutChangeEvent) => {
+    const measured = e.nativeEvent.layout.width;
+    setWidth((drawn) => settledWidth(drawn, measured, PixelRatio.get()));
+  }, []);
 
   const xLayout = useMemo(
     () =>
@@ -770,7 +783,7 @@ export const TrendBlock = memo(function TrendBlock({
   const pan = usePanGesture(panConfig);
 
   const firstPeriod = periods?.[0];
-  const lastPeriod = periods?.[periods.length - 1];
+  const lastPeriod = periods?.at(-1);
 
   const highlightValue = primaryValues[defaultHighlightIdx];
   const highlightPeriod = periods?.[defaultHighlightIdx];
@@ -827,10 +840,7 @@ export const TrendBlock = memo(function TrendBlock({
       ) : null}
 
       <GestureDetector gesture={pan}>
-        <View
-          onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-          style={[blockSharedStyles.chartWrap, styles.plot, { height }]}
-        >
+        <View onLayout={measure} style={[blockSharedStyles.chartWrap, styles.plot, { height }]}>
           {width > 0 ? (
             <>
               <Chart

@@ -55,7 +55,7 @@ export const EntitySheet = memo(function EntitySheet({
 
   const enter = makeStaggerEnter();
 
-  const latest = indicator?.latest ?? indicator?.values[indicator.values.length - 1];
+  const latest = indicator?.latest ?? indicator?.values.at(-1);
   // The reading as the indicator's card prints it (`indicatorReading`).
   const quote = useMemo(
     () => (indicator && latest != null ? indicatorReading(indicator, latest) : undefined),

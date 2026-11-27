@@ -66,7 +66,7 @@ export const SheetHandle = memo(function SheetHandle({
               accessibilityRole="header"
               accessibilityLabel={title}
             >
-              {title.toLocaleLowerCase()}
+              {title.toLowerCase()}
             </Text>
           ) : (
             title

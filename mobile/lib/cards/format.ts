@@ -30,7 +30,7 @@ export interface WindowChange {
 /** Last value in a series, or null if the series is unusable. */
 export function latestOf(indicator: Pick<Indicator, 'values'>): number | null {
   const v = indicator.values;
-  const last = v[v.length - 1];
+  const last = v.at(-1);
   return typeof last === 'number' && Number.isFinite(last) ? last : null;
 }
 

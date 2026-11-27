@@ -27,6 +27,8 @@ const MUST_COMPILE: Record<string, string[]> = {
   'components/CountrySheet.tsx': ['CountrySheet', 'CountryBody'],
   'components/SheetBookmarksPage.tsx': ['SheetBookmarksPage'],
   'components/BriefingChrome.tsx': ['BriefingChrome'],
+  // Skipped for one `try…finally` in a handler until it moved to `afterwards`.
+  'components/NotificationPrimerSheet.tsx': ['NotificationPrimerSheet'],
   'components/map/StoryCard.tsx': ['StoryCard', 'StoryActions'],
   'components/globe/MiniGlobe.tsx': ['GlobeCanvas'],
 };

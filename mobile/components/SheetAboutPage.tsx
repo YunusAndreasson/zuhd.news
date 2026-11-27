@@ -162,7 +162,7 @@ function prose(list: string[]): string {
   if (list.length === 0) return '';
   if (list.length === 1) return list[0] ?? '';
   const head = list.slice(0, -1).join(', ');
-  const last = list[list.length - 1] ?? '';
+  const last = list.at(-1) ?? '';
   return list.length === 2 ? `${head} and ${last}` : `${head}, and ${last}`;
 }
 

@@ -9,6 +9,8 @@ import { CardShell } from './CardShell';
 
 interface TrajectoryCardProps {
   card: Trajectory;
+  /** A page not in front when the carousel mounts: its line is not drawn in. */
+  drawn?: boolean;
 }
 
 /**
@@ -16,7 +18,7 @@ interface TrajectoryCardProps {
  * against the world's median. The words and the series are the site's
  * (`trajectoryCards`), so a country reads the same on its page and here.
  */
-export function TrajectoryCard({ card }: TrajectoryCardProps) {
+export function TrajectoryCard({ card, drawn }: TrajectoryCardProps) {
   const { periods, world, reference, domain, format } = card;
   const comparison = useMemo(() => ({ values: world, label: 'world' }), [world]);
   const thresholds = useMemo(() => (reference ? [reference] : undefined), [reference]);
@@ -37,8 +39,9 @@ export function TrajectoryCard({ card }: TrajectoryCardProps) {
       <TrajectoryChart
         values={card.values}
         startYear={Number(periods[0])}
-        endYear={Number(periods[periods.length - 1])}
+        endYear={Number(periods.at(-1))}
         comparison={comparison}
+        drawn={drawn}
         thresholds={thresholds}
         minY={domain?.[0]}
         maxY={domain?.[1]}

@@ -25,19 +25,26 @@ import { createListeners } from './store-plumbing';
 let bytes = 0;
 const listeners = createListeners();
 
-/** Exact UTF-8 length. `String.length` counts UTF-16 units and would undercount
- *  every non-Latin headline in the feed. */
+/** Every UTF-16 unit past ASCII. */
+const PAST_ASCII = /[\u0080-\uffff]/g;
+
+/**
+ * Exact UTF-8 length. `String.length` counts UTF-16 units and would undercount
+ * every non-Latin headline in the feed.
+ *
+ * Every unit is at least a byte, so only the ones past ASCII are visited: a
+ * payload is almost all ASCII, and a loop over each of its characters cost
+ * more than parsing it did.
+ */
 export function utf8ByteLength(s: string): number {
-  let n = 0;
-  for (let i = 0; i < s.length; i++) {
-    const c = s.charCodeAt(i);
-    if (c < 0x80) n += 1;
-    else if (c < 0x800) n += 2;
-    else if (c >= 0xd800 && c <= 0xdbff) {
-      // Surrogate pair — one 4-byte code point; skip the low surrogate.
-      n += 4;
-      i++;
-    } else n += 3;
+  let n = s.length;
+  const wide = s.match(PAST_ASCII);
+  if (!wide) return n;
+  for (const unit of wide) {
+    const c = unit.charCodeAt(0);
+    // Two bytes under U+0800, and each half of a surrogate pair is two of its
+    // code point's four; anything else is three.
+    n += c < 0x800 || (c >= 0xd800 && c <= 0xdfff) ? 1 : 2;
   }
   return n;
 }

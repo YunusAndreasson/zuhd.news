@@ -181,9 +181,12 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
             // which on iOS does NOT clip child rendering by default.
             style={[styles.scroll, { height: CARD_HEIGHT }]}
           >
-            {cards.map((card) => (
+            {/* The carousel opens on its first page. The others mount beside
+                it, clipped: drawn in, each redrew its canvas for a second
+                nobody saw. */}
+            {cards.map((card, i) => (
               <View key={card.key} style={[styles.page, { width: pageWidth, height: CARD_HEIGHT }]}>
-                <TrajectoryCard card={card} />
+                <TrajectoryCard card={card} drawn={i > 0} />
               </View>
             ))}
           </ScrollView>
