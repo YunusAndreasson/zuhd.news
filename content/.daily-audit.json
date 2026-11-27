@@ -1,38 +1,39 @@
 {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "metrics": {
-    "articles": { "value": 63, "detail": "5 cycles, all completed, avg 12 published/cycle (61 yesterday)" },
-    "freshness": { "median": 0.1, "p90": 0.4, "max": 0.6, "target": 1.0, "met": true },
-    "categories": { "politics": 26, "economy": 16, "science": 5, "tech": 16 },
-    "multiSource": { "pct": 35, "target": 30, "met": true },
-    "usDatelines": { "pct": 24, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 11, "target": 5, "met": true },
+    "articles": { "value": 53, "detail": "5 cycles, all completed, avg 11 published/cycle (65 yesterday)" },
+    "freshness": { "median": 0.1, "p90": 0.2, "max": 0.9, "target": 1.0, "met": true },
+    "categories": { "politics": 21, "economy": 17, "science": 3, "tech": 12 },
+    "multiSource": { "pct": 32, "target": 30, "met": true },
+    "usDatelines": { "pct": 15, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 6, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 1,
-    "imageUrlPct": 100,
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 22, "AS": 12, "EU": 12, "ME": 11, "AF": 5, "OC": 1 } },
-    "sciTech": { "ratio": 33, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 21, "target": 20, "met": false },
-    "uniqueSources": 53,
+    "stateOrAdvocacyOnly": 0,
+    "imageUrlPct": 98,
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 14, "ME": 13, "AM": 11, "AS": 9, "AF": 6, "OC": 0 } },
+    "sciTech": { "ratio": 28, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 17, "target": 20, "met": true },
+    "uniqueSources": 49,
     "duplicates": 0,
-    "avgCycleDuration": 1155
+    "avgCycleDuration": 1168
   },
-  "experiment": "Skipped. No experiment is active and there is no pause gate. Every target is met except top-source share, where Al Jazeera led 13 of 63 stories (20.6%). That is a one-day spike: it led 5 to 9 stories a day from 11-19 to 11-24, about 14% of output. One day over the line is not enough evidence to change a source cap.",
-  "weakestArea": "Top-source share is just over its cap. Al Jazeera Online is the first-listed source on 13 of 63 stories (20.6% against a 20% cap), up from 5 yesterday. The stories range widely: Abrego Garcia, Huawei's conviction, the FCC's SpaceX licence, the Pakistani astronaut, the Houthis and Netanyahu's trial. Al Jazeera wire-style coverage of a Gulf-heavy news day accounts for the spike, not a feed imbalance. If it stays above 20% for three days, the lever is the standalone MAX_PER_SOURCE in fetch-news-api.js (3 → 2), which does not raise NewsAPI token use.",
+  "experiment": "Skipped. No experiment is active, none is queued and there is no pause gate. Science is the only miss, at 3 against 5. Over the last nine days it averaged 5.6 a day (5, 6, 4, 4, 7, 8, 6, 7, then 3), so this is one low day and not a trend. The 2026-09-26 decision allows the science floor to go unmet.",
+  "weakestArea": "Science is at 3 stories, against 5. All three came from Phys.org: the miniature Cas12m CRISPR proteins, the most distant quasar, and 5G interference with satellite weather forecasts. On a US holiday the volume was thinner (53 stories against 65), and politics and economy took the space. Quanta, Carbon Brief, SciDev.Net and Dialogue Earth each fed 3 items to the selector but led nothing. If science stays under 5 for three days, widen the science entries in CURATED_SOURCES in fetch-news-api.js. Do not raise the floor, and do not raise NewsAPI token use.",
   "watching": [
-    "Hormuz and the Gulf: the IRGC says mines hit two tankers, Iran blacklisted Hormuz tugboats, the Houthis claim a Ras Tanura strike, threaten Saudi ports and are closing on Aden.",
-    "Inflation is back: US PCE is at 3.8% with a December Fed hike in play, Australian core inflation is at a two-year high, India's food inflation is 8.94% and Ofgem raised the UK price cap 26%.",
-    "Argentina slipped into technical recession under Milei, while a piece on Thiel's network maps his Argentina ties.",
-    "Israel: judges recommend dropping the Netanyahu bribery count, and Eisenkot won his first coalition partner ahead of a fifth election.",
-    "Russia–Ukraine: Putin vows retaliation for the refinery strikes, which threatens the energy ceasefire.",
-    "Cyber: breaches at the CIA and ODNI, Microsoft's 24-hour 'code red' outage, ransomware at a Guadeloupe hospital and the myColorado digital-ID outage.",
-    "COP31's Antalya pact collapsed, with each side blaming the other."
+    "Gulf war: an Iranian drone killed two Italian Rheinmetall staff in Kuwait, the Makkah pact meeting in Islamabad addressed the Saudi–Houthi war, and Kushner is running an Iran channel on Hormuz.",
+    "Monetary tightening: gold is at a 14-month low as a December Fed hike is priced in, OPEC+ rolled quotas into January, and Hernández de Cos leads the race to succeed Lagarde at the ECB.",
+    "Israel: Eisenkot's Democrats coalition deal puts the bloc at 48 seats ahead of the election.",
+    "Nigeria: gunmen fired on a Peter Obi rally in Benin City, and the Emefiele, Agunloye and Omokore corruption trials all moved.",
+    "Russia–Ukraine: Ukraine struck Savasleyka airbase, hitting five aircraft. The EU summit is weighing a €45 billion Ukraine loan against the budget.",
+    "Korea: Kim Jong Un ordered tactical nuclear weapons deployed.",
+    "Chip export controls: Nvidia halted AI chip shipments to Southeast Asia under the new licence rule."
   ],
   "coverageGaps": [
-    "Oceania had one dateline (Australian inflation), and the Solomon Islands–China story from yesterday got no follow-up.",
-    "Science met its floor at 5, but two of the five were dark-matter and black-hole pieces. There was nothing from life sciences beyond the Gaza meningitis and Karak polio health stories.",
-    "Africa had five stories, mostly South Africa and Nigeria, with nothing from the Sahel or East Africa despite the conflict data the site carries."
+    "Oceania had no datelines today, after one yesterday.",
+    "Every science story came from Phys.org, while Quanta, Carbon Brief, SciDev.Net and New Scientist led none.",
+    "Climate and environment coverage was thin. The Ibiza diesel spill and California's king tides were the only entries, and the collapse of COP31 got no follow-up.",
+    "Latin America had 6% of datelines, mostly Brazil and Honduras. The Argentina recession story from yesterday got no follow-up."
   ],
-  "context": "All five cycles completed, with an average of 1155s, 12 published per cycle and the editor averaging 89s. Yesterday's same-event duplicate (two 404 Media Google-patent stories) did not recur today. Multi-source at 35% and LatAm datelines at 11% are the best this week, and Brazil alone gave three stories via Agência Pública."
+  "context": "This was Thanksgiving in the US, which explains the lighter volume and the low US dateline share (15%). Every cycle completed: the selector averaged 163s, the writer 130s and the editor 69s. Al Jazeera's share fell back to 17% from yesterday's 21%, so no source cap is needed."
 }
