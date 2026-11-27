@@ -109,10 +109,15 @@ export function parseSeverityHero(alert: GdacsAlert): SeverityHero {
   return { focal: text, secondary: '' };
 }
 
+/** One formatter, kept: `toLocaleString` builds one on every call, and the
+ *  app's disasters list asks once for each fire in it. */
+let grouped: Intl.NumberFormat | undefined;
+
 function formatGrouped(s: string): string {
   const n = Number(s);
   if (!Number.isFinite(n)) return s;
-  return n.toLocaleString('en-US');
+  grouped ??= new Intl.NumberFormat('en-US');
+  return grouped.format(n);
 }
 
 function normalizeUnit(u: string): string {
