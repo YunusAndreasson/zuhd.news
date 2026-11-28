@@ -2,13 +2,163 @@
   "version": 1,
   "stories": [
     {
+      "id": "event-horizon-telescope-black-hole-jet-dynamics",
+      "label": "Event Horizon Telescope views the dynamics and geometry of a black hole jet in extreme detail",
+      "firstSeen": "2026-11-28T05:06:49.154Z",
+      "lastCovered": "2026-11-28T10:04:29.008Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-11-28-event-horizon-telescope-black-hole-jet-dynamics"
+      ],
+      "eventUri": null,
+      "summary": "The Event Horizon Telescope collaboration has resolved the dynamics and geometry of a relativistic jet near a supermassive black hole in unprecedented detail. Lead with what was newly measured (how the jet is launched, its shape, its speed) and what it settles about how black holes turn infall into outflow. Name the object and the paper."
+    },
+    {
+      "id": "kunar-school-blast-students-killed-afghanistan",
+      "label": "Several Students Feared Dead In Blast At School In Afghanistan",
+      "firstSeen": "2026-11-28T10:04:29.008Z",
+      "lastCovered": "2026-11-28T10:04:29.008Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-28-kunar-school-blast-students-killed-afghanistan"
+      ],
+      "eventUri": "eng-12228845",
+      "summary": "An explosion at a middle school in Kunar province killed at least 7 children and wounded more than 90, per ITV; lead with the toll and the ages. Who bears it: schoolchildren in an eastern border province already shelled in the Afghanistan-Pakistan conflict. Say plainly what is not known (cause, claim of responsibility) and what Taliban authorities have said; Mehr is Iranian state media, so attribute its figures."
+    },
+    {
+      "id": "meloni-zelensky-benghazi-strike-aid-italy",
+      "label": "Meloni warns Zelensky aid will be harder to provide after Libya raid",
+      "firstSeen": "2026-11-28T10:04:29.008Z",
+      "lastCovered": "2026-11-28T10:04:29.008Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-28-meloni-zelensky-benghazi-strike-aid-italy"
+      ],
+      "eventUri": "ita-971411",
+      "summary": "New development on the Benghazi strike arc: Italy's Meloni told Zelensky Rome will find aid harder to give after Ukraine hit Russian vessels in a Libyan port, and Zelensky concedes the strikes were not coordinated with European partners (Middle East Monitor). Lead with the cost to Kyiv: taking the war into the Mediterranean, on Italy's doorstep and in a Libyan port, strains its most exposed European backer. Attribute Meloni's words to La Repubblica via TASS; MEMO carries the no-coordination admission. Dateline Rome."
+    },
+    {
+      "id": "raf-lakenheath-drones-repelled-iran-suspected",
+      "label": "U.S. military repelled drones at UK airbase, Iran suspected of involvement - FT",
+      "firstSeen": "2026-11-28T10:04:29.008Z",
+      "lastCovered": "2026-11-28T10:04:29.008Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-28-raf-lakenheath-drones-repelled-iran-suspected"
+      ],
+      "eventUri": "eng-12228762",
+      "summary": "US forces repelled several drones at RAF Lakenheath this month and Iran is suspected, per the Financial Times citing people familiar. Lead with the geography: the Iran war reaching a base in Suffolk, days after Iran's deputy chief of staff said any place an attack on Iran is launched from is a legitimate target. Attribute carefully; it is unconfirmed sourcing. Dateline Lakenheath."
+    },
+    {
+      "id": "centcom-denies-iran-tanker-seizure-hormuz-toll",
+      "label": "US Central Command denies Iranian commander's claims about seized tankers, carrier strike, Hormuz toll",
+      "firstSeen": "2026-11-28T10:04:29.008Z",
+      "lastCovered": "2026-11-28T10:04:29.008Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-28-centcom-denies-iran-tanker-seizure-hormuz-toll"
+      ],
+      "eventUri": "eng-12228715",
+      "summary": "New development on the Hormuz arc: CENTCOM denies Iran's claims that it seized tankers, struck a carrier and is levying a toll on the strait, while Iran's envoy to Pakistan says messages with Washington are moving through Qatar and Pakistan (Mehr). Lead with the toll claim and what it would mean for ship traffic through the Strait of Hormuz and for Brent crude; set the two sides' claims side by side without stating either as fact."
+    },
+    {
+      "id": "palantir-poland-300-million-military-ai-deal",
+      "label": "Palantir signs $300 million deal with Poland to bring AI to military operations",
+      "firstSeen": "2026-11-28T10:04:29.008Z",
+      "lastCovered": "2026-11-28T10:04:29.008Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-28-palantir-poland-300-million-military-ai-deal"
+      ],
+      "eventUri": "eng-12226943",
+      "summary": "Poland signed a five-year, roughly $300 million contract putting Palantir's AI into military operations, confirmed by its defence minister. Lead with the dependency: a frontline NATO state wiring its command decisions into one US company's software, as European rearmament money flows. Set against Europe's own push for defence-tech sovereignty."
+    },
+    {
+      "id": "nvidia-halts-ai-servers-malaysia-indonesia-export-rules",
+      "label": "Nvidia Halts AI Server Shipments to Four Southeast Asian Countries",
+      "firstSeen": "2026-11-28T10:04:29.008Z",
+      "lastCovered": "2026-11-28T10:04:29.008Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-28-nvidia-halts-ai-servers-malaysia-indonesia-export-rules"
+      ],
+      "eventUri": null,
+      "summary": "Nvidia told partners to stop shipping servers with its chips to Malaysia, Singapore, Thailand and Indonesia as new US export rules took effect, to stop Chinese firms reaching restricted processors through regional data centres. Lead with who pays: two Muslim-majority countries, Malaysia and Indonesia, whose data-centre buildouts were sold on access to US chips. The freeze has no stated end."
+    },
+    {
+      "id": "pakistan-smw5-submarine-cable-repaired-internet",
+      "label": "PTA says submarine cable fault fixed, internet services return to normal",
+      "firstSeen": "2026-11-28T10:04:29.008Z",
+      "lastCovered": "2026-11-28T10:04:29.008Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-28-pakistan-smw5-submarine-cable-repaired-internet"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's internet is back to normal after the SEA-ME-WE 5 cable fault reported Nov 18 was repaired: ten days of degraded service for a country of 240 million. Lead with the duration and the dependency: how few cables carry Pakistan's traffic and how long a repair ship takes, the same exposure that runs through the Red Sea and the Gulf."
+    },
+    {
+      "id": "robam-robot-chef-knife-skills-cucumber-dagger",
+      "label": "机器人挑战中式刀工天花板！拿下名菜“蓑衣黄瓜”",
+      "firstSeen": "2026-11-28T10:04:29.008Z",
+      "lastCovered": "2026-11-28T10:04:29.008Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-28-robam-robot-chef-knife-skills-cucumber-dagger"
+      ],
+      "eventUri": null,
+      "summary": "Kitchen-appliance maker Robam trained a robot with a 22-degree-of-freedom hand to cut a 'coir-raincoat cucumber', a classic test of a chef's knife work, raising its success rate from 30% to 90% in three months. Lead with that number and the method: chef teleoperation demonstrations plus DAgger on real-robot data, because simulation cannot model food deforming under a blade. The story is how Chinese firms turn tacit human skill into training data."
+    },
+    {
+      "id": "crispr-epigenome-editing-trials-hepatitis-b",
+      "label": "CRISPR is now being used to control genes, not just edit them | New Scientist",
+      "firstSeen": "2026-11-28T10:04:29.008Z",
+      "lastCovered": "2026-11-28T10:04:29.008Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-28-crispr-epigenome-editing-trials-hepatitis-b"
+      ],
+      "eventUri": null,
+      "summary": "Epigenome editing, which uses a disabled CRISPR to switch genes on or off without cutting DNA, is now in human trials, including against hepatitis B. Lead with the difference: no break in the genome, so fewer of the errors cutting causes, and potentially reversible. Name the trials and what they target."
+    },
+    {
       "id": "taliban-balkh-bans-women-names-medical-records",
       "label": "'Goat', 'cow' or 'bibi': Taliban's latest crackdown strips Afghan women of their names",
       "firstSeen": "2026-11-28T05:06:49.154Z",
       "lastCovered": "2026-11-28T05:06:49.154Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-28-taliban-balkh-bans-women-names-medical-records"
@@ -23,7 +173,7 @@
       "lastCovered": "2026-11-28T05:06:49.154Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-28-taiwan-local-elections-taipei-mayor-china"
@@ -38,7 +188,7 @@
       "lastCovered": "2026-11-28T05:06:49.154Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-28-ukraine-black-sea-ceasefire-offer-grain-exports"
@@ -53,7 +203,7 @@
       "lastCovered": "2026-11-28T05:06:49.154Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-28-germany-2027-budget-210-billion-borrowing"
@@ -68,7 +218,7 @@
       "lastCovered": "2026-11-28T05:06:49.154Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-28-bitcoin-liquidity-etf-outflows-november-slide"
@@ -83,7 +233,7 @@
       "lastCovered": "2026-11-28T05:06:49.154Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-28-openai-countersues-apple-trade-secrets-suppliers"
@@ -98,7 +248,7 @@
       "lastCovered": "2026-11-28T05:06:49.154Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-28-ai-server-makers-margin-squeeze-shares-halve"
@@ -113,7 +263,7 @@
       "lastCovered": "2026-11-28T05:06:49.154Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-28-india-gavai-ai-fabricated-judgment-courts"
@@ -122,28 +272,13 @@
       "summary": "India's former Chief Justice BR Gavai said courts have struck down outcomes where AI was misused, citing a ruling that relied on a judgment that never existed. Lead with the fabricated precedent: a court decision built on an AI-hallucinated case. Ask what safeguards Indian courts now apply to AI-drafted filings and orders. If the source gives few specifics on the case, keep the piece tight on what he said."
     },
     {
-      "id": "event-horizon-telescope-black-hole-jet-dynamics",
-      "label": "Event Horizon Telescope views the dynamics and geometry of a black hole jet in extreme detail",
-      "firstSeen": "2026-11-28T05:06:49.154Z",
-      "lastCovered": "2026-11-28T05:06:49.154Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-28-event-horizon-telescope-black-hole-jet-dynamics"
-      ],
-      "eventUri": null,
-      "summary": "The Event Horizon Telescope collaboration has resolved the dynamics and geometry of a relativistic jet near a supermassive black hole in unprecedented detail. Lead with what was newly measured (how the jet is launched, its shape, its speed) and what it settles about how black holes turn infall into outflow. Name the object and the paper."
-    },
-    {
       "id": "philippines-humpback-whale-breeding-ground-protection",
       "label": "Can the Philippines better protect its only known humpback whale breeding ground?",
       "firstSeen": "2026-11-28T05:06:49.154Z",
       "lastCovered": "2026-11-28T05:06:49.154Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-28-philippines-humpback-whale-breeding-ground-protection"
@@ -158,7 +293,7 @@
       "lastCovered": "2026-11-27T22:04:55.490Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-27-icj-rules-myanmar-genocide-rohingya-gambia"
@@ -173,7 +308,7 @@
       "lastCovered": "2026-11-27T22:04:55.490Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-27-canada-supreme-court-upholds-quebec-bill-21-hijab-ban"
@@ -188,7 +323,7 @@
       "lastCovered": "2026-11-27T22:04:55.490Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-27-anc-actionsa-gauteng-metros-da-shut-out"
@@ -203,7 +338,7 @@
       "lastCovered": "2026-11-27T22:04:55.490Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-27-putin-nuclear-submarine-hypersonic-five-more-2030"
@@ -218,7 +353,7 @@
       "lastCovered": "2026-11-27T22:04:55.490Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-27-us-disables-ship-iran-blockade-hormuz-shut"
@@ -233,7 +368,7 @@
       "lastCovered": "2026-11-27T22:04:55.490Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-27-five-nato-allies-cv90-400-vehicles-6-billion"
@@ -248,7 +383,7 @@
       "lastCovered": "2026-11-27T22:04:55.490Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-27-african-megacities-subsidence-seven-million-flooding-2050"
@@ -263,7 +398,7 @@
       "lastCovered": "2026-11-27T22:04:55.490Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-27-measles-deaths-record-low-us-mexico-bolivia-lose-elimination"
@@ -278,7 +413,7 @@
       "lastCovered": "2026-11-27T22:04:55.490Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-27-hku-barrier-nucleic-acid-drugs-trapped-cells"
@@ -293,7 +428,7 @@
       "lastCovered": "2026-11-27T22:04:55.490Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-27-bytedance-doubao-agent-jianying-video-editing-test"
@@ -308,7 +443,7 @@
       "lastCovered": "2026-11-27T22:04:55.490Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-27-france-counter-drone-defence-industry-pact-rufo"
@@ -323,7 +458,7 @@
       "lastCovered": "2026-11-27T22:04:55.490Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-27-germany-state-advertising-transparency-media-freedom-act"
@@ -338,7 +473,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-serbia-students-nominate-saicic-presidency"
@@ -353,7 +488,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-noreaster-east-coast-power-outages-thanksgiving"
@@ -368,7 +503,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-anc-mk-ethekwini-mayor-durban-coalition"
@@ -383,7 +518,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-thirupparankundram-supreme-court-lamp-order-modi"
@@ -398,7 +533,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-tanzania-critics-arrests-abductions-free-speech"
@@ -413,7 +548,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-south-africa-food-basket-fuel-costs-incomes"
@@ -428,7 +563,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-deutsche-bank-odebrecht-lava-jato-accounts"
@@ -443,7 +578,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-dr-congo-copper-output-critical-minerals-race"
@@ -458,7 +593,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-trump-nvidia-huang-reinstated-republicans"
@@ -473,7 +608,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-uk-dwp-cyber-incident-systems-offline"
@@ -488,7 +623,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-mercedes-cla-china-doubao-momenta"
@@ -503,7 +638,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-hugging-face-multi-agent-qwen-training"
@@ -518,7 +653,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-open-access-research-cited-more-in-patents"
@@ -533,7 +668,7 @@
       "lastCovered": "2026-11-27T18:07:20.269Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-27-space-data-centers-robot-maintenance-turyshev"
@@ -542,13 +677,29 @@
       "summary": "JPL physicist Slava Turyshev's follow-up analysis argues that orbital AI data centres cannot be maintained by astronauts and will need robotic servicing at a scale that does not exist yet. Lead with the maintenance arithmetic: failure rates, hardware mass, and how often someone would have to fly up. The mechanism is that launch cost is only half the bottleneck for the space-compute plans tech firms are selling. Dateline Pasadena."
     },
     {
+      "id": "india-delimitation-bill-dmk-opposition-kharge",
+      "label": "Kharge convenes Opposition floor leaders to meet on November 28 for devising strategy, DMK invited",
+      "firstSeen": "2026-11-27T10:04:50.114Z",
+      "lastCovered": "2026-11-28T10:04:29.008Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-11-27-india-delimitation-bill-dmk-opposition-kharge",
+        "2026-11-28-india-bloc-opposes-delimitation-bill-special-sitting"
+      ],
+      "eventUri": "eng-12225589",
+      "summary": "India's delimitation Bill would redraw Lok Sabha seats by population. That shifts power from southern states, which slowed their population growth, to the populous north where the BJP is strongest. Stalin says the DMK's opposition is non-negotiable, and Kharge has called opposition floor leaders together for November 28. Lead with the arithmetic: how many seats Tamil Nadu and the south stand to lose. Dateline Chennai."
+    },
+    {
       "id": "costa-rica-bars-un-rapporteur-albanese",
       "label": "Costa Rica bars entry to UN rapporteur over 'links to terrorist acts'",
       "firstSeen": "2026-11-27T14:04:43.005Z",
       "lastCovered": "2026-11-27T14:04:43.005Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-27-costa-rica-bars-un-rapporteur-albanese"
@@ -563,7 +714,7 @@
       "lastCovered": "2026-11-27T14:04:43.005Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-27-un-hunger-hotspots-conflict-el-nino-famine"
@@ -578,7 +729,7 @@
       "lastCovered": "2026-11-27T14:04:43.005Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-27-south-africa-constitutional-court-nhi-ruling"
@@ -593,7 +744,7 @@
       "lastCovered": "2026-11-27T14:04:43.005Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-27-iran-says-tankers-recovered-from-us-navy-hormuz-closed"
@@ -608,7 +759,7 @@
       "lastCovered": "2026-11-27T14:04:43.005Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-27-pakistan-weekly-inflation-wheat-flour"
@@ -623,7 +774,7 @@
       "lastCovered": "2026-11-27T14:04:43.005Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-27-gold-one-year-low-margin-calls-rate-hikes"
@@ -638,7 +789,7 @@
       "lastCovered": "2026-11-27T14:04:43.005Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-27-altria-imperial-brands-bid-tobacco-consolidation"
@@ -653,7 +804,7 @@
       "lastCovered": "2026-11-27T14:04:43.005Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-27-gazprom-botas-turkey-gas-contract-extended"
@@ -668,7 +819,7 @@
       "lastCovered": "2026-11-27T14:04:43.005Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-27-intel-trump-10-percent-stake-chips-grants"
@@ -683,7 +834,7 @@
       "lastCovered": "2026-11-27T14:04:43.005Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-27-sap-cyber-incident-source-code-breach"
@@ -698,7 +849,7 @@
       "lastCovered": "2026-11-27T14:04:43.005Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-27-hackers-breach-us-air-force-cloud-one"
@@ -713,7 +864,7 @@
       "lastCovered": "2026-11-27T14:04:43.005Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-27-electric-charge-layer-clouds-flight-study"
@@ -728,7 +879,7 @@
       "lastCovered": "2026-11-27T10:04:50.114Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-27-hormuz-tanker-mines-brent-96"
@@ -743,7 +894,7 @@
       "lastCovered": "2026-11-27T10:04:50.114Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-27-monero-slide-atomic-swap-privacy-upgrade"
@@ -752,28 +903,13 @@
       "summary": "Monero fell more than 11% on Thursday, its worst day since June. Two causes: a new wallet lets users swap Bitcoin and Monero directly, and an upgrade meant to make Monero transactions harder to trace is in security audits. Lead with the mechanism, not the price: privacy coins are traded on expectations about what regulators and exchanges will tolerate. Explain why a feature that strengthens privacy can scare off listings."
     },
     {
-      "id": "india-delimitation-bill-dmk-opposition-kharge",
-      "label": "Kharge convenes Opposition floor leaders to meet on November 28 for devising strategy, DMK invited",
-      "firstSeen": "2026-11-27T10:04:50.114Z",
-      "lastCovered": "2026-11-27T10:04:50.114Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-27-india-delimitation-bill-dmk-opposition-kharge"
-      ],
-      "eventUri": "eng-12225589",
-      "summary": "India's delimitation Bill would redraw Lok Sabha seats by population. That shifts power from southern states, which slowed their population growth, to the populous north where the BJP is strongest. Stalin says the DMK's opposition is non-negotiable, and Kharge has called opposition floor leaders together for November 28. Lead with the arithmetic: how many seats Tamil Nadu and the south stand to lose. Dateline Chennai."
-    },
-    {
       "id": "amapa-fires-el-nino-drought-brazil",
       "label": "‘Essas queimadas destroem os sonhos da gente’: O Amapá sob incêndios e o El Niño",
       "firstSeen": "2026-11-27T10:04:50.114Z",
       "lastCovered": "2026-11-27T10:04:50.114Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-27-amapa-fires-el-nino-drought-brazil"
@@ -788,7 +924,7 @@
       "lastCovered": "2026-11-27T10:04:50.114Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-27-south-africa-high-seas-treaty-ratification-vote"
@@ -803,7 +939,7 @@
       "lastCovered": "2026-11-27T10:04:50.114Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-27-paraparticles-observed-quantum-simulator"
@@ -818,7 +954,7 @@
       "lastCovered": "2026-11-27T10:04:50.114Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-27-pregnancy-eating-disorders-screening-gap"
@@ -833,7 +969,7 @@
       "lastCovered": "2026-11-27T10:04:50.114Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-27-deepseek-leads-openrouter-226-trillion-tokens"
@@ -848,7 +984,7 @@
       "lastCovered": "2026-11-27T10:04:50.114Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-27-ascend-910c-inference-throughput-kv-cache-china"
@@ -863,163 +999,13 @@
       "lastCovered": "2026-11-27T10:04:50.114Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-27-xreal-google-android-xr-glasses-hong-kong-ipo"
       ],
       "eventUri": null,
       "summary": "XREAL, the Chinese firm that iResearch data in its Hong Kong listing application ranks first in global AR-glasses revenue for four straight years, launched AURA with Google in October, the first wired XR glasses on Android XR. Lead with the bet: a Chinese hardware maker is anchoring Google's push into the platform after smartphones, ahead of its IPO. Is holiday demand real? Dateline Beijing."
-    },
-    {
-      "id": "guinea-bissau-junta-delays-election-two-years",
-      "label": "Guinea-Bissau presidential election delayed by two years",
-      "firstSeen": "2026-11-27T05:04:18.106Z",
-      "lastCovered": "2026-11-27T05:04:18.106Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-26-guinea-bissau-junta-delays-election-two-years"
-      ],
-      "eventUri": "eng-12224925",
-      "summary": "Guinea-Bissau's military rulers pushed the December 6 presidential and legislative vote, meant to return the country to civilian rule, to November 2028. Lead with the two-year delay nine days before polling. The structural point is the West African junta pattern (Mali, Burkina Faso, Niger, Guinea) of transitions that keep being extended, and what ECOWAS can still do after the Sahel states left it. Dateline Bissau. No regional OIC outlet in the feed."
-    },
-    {
-      "id": "mexico-seeks-us-talks-spacex-debris",
-      "label": "Mexico seeks US talks about suspected SpaceX debris",
-      "firstSeen": "2026-11-27T05:04:18.106Z",
-      "lastCovered": "2026-11-27T05:04:18.106Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-26-mexico-seeks-us-talks-spacex-debris"
-      ],
-      "eventUri": "spa-4433968",
-      "summary": "Sheinbaum's government wants talks with US aviation authorities after suspected debris from SpaceX Starbase launches fell on Mexican territory in Tamaulipas. Lead with who bears the cost: Mexican communities and coastline take the debris while the launch licence and the revenue stay north of the border. The structural point is that the FAA licenses a launch site whose hazards cross a border, and Mexico has no say in it. Dateline Tamaulipas."
-    },
-    {
-      "id": "congress-leaders-detained-lucknow-constitution-day-march",
-      "label": "Many Congress leaders detained for march sans permission in Lucknow",
-      "firstSeen": "2026-11-27T05:04:18.106Z",
-      "lastCovered": "2026-11-27T05:04:18.106Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-26-congress-leaders-detained-lucknow-constitution-day-march"
-      ],
-      "eventUri": "eng-12219560",
-      "summary": "Uttar Pradesh police detained Congress's state chief Aradhana Mishra, AICC in-charge Rajendra Pal Gautam and party workers for holding a 'Save the Constitution' march on Constitution Day after permission was refused. Lead with the irony of the date. The structural point is the use of permission rules to stop opposition assembly in India's largest state, which Congress says other states allowed. Dateline Lucknow."
-    },
-    {
-      "id": "tokyo-core-inflation-16-month-high-boj-hike",
-      "label": "Core inflation in Japan's capital accelerates in November",
-      "firstSeen": "2026-11-27T05:04:18.106Z",
-      "lastCovered": "2026-11-27T05:04:18.106Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-27-tokyo-core-inflation-16-month-high-boj-hike"
-      ],
-      "eventUri": "eng-12219077",
-      "summary": "Tokyo core CPI (excluding fresh food) rose 2.9% in November, the fastest pace in 16 months, and the capital's figure leads the national one. Lead with the number and what it does to a December Bank of Japan rate hike, then what that means for the yen. Who pays: households facing rice and food costs under the Takaichi government. Dateline Tokyo."
-    },
-    {
-      "id": "iraq-oil-revenue-8-8-billion-opec-quota",
-      "label": "Iraq's oil revenues hit $8.8bn as it prepares to ask for higher Opec quota | The National",
-      "firstSeen": "2026-11-27T05:04:18.106Z",
-      "lastCovered": "2026-11-27T05:04:18.106Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-26-iraq-oil-revenue-8-8-billion-opec-quota"
-      ],
-      "eventUri": "ukr-376589",
-      "summary": "Iraq earned $8.8 billion from crude exports in October, which oil minister Basim Al Abadi says it never reached before the Iran war, and will ask OPEC for a higher quota. The new development after OPEC+ rolled quotas into January: a member profiting from the war's disruption now wants to pump more. Lead with the $8.8 billion and the war as its cause. Name Brent crude and ship traffic through the Strait of Hormuz. Dateline Baghdad."
-    },
-    {
-      "id": "trump-gdp-data-fake-investigation-bea",
-      "label": "Trump calls GDP data released before midterms 'fake', demands investigation",
-      "firstSeen": "2026-11-27T05:04:18.106Z",
-      "lastCovered": "2026-11-27T05:04:18.106Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-26-trump-gdp-data-fake-investigation-bea"
-      ],
-      "eventUri": "eng-12224564",
-      "summary": "Trump accused his own Commerce Department of deliberately releasing false growth figures before the midterms and wants an investigation. Lead with a president attacking the Bureau of Economic Analysis's numbers. The structural point is the independence of statistical agencies: markets and every foreign central bank price off US GDP, and data that is seen as political loses that role. Dateline West Palm Beach."
-    },
-    {
-      "id": "binance-reopens-withdrawals-after-6-3-billion-hack",
-      "label": "Binance lifts withdrawal suspension four weeks after a $6.3 billion hack",
-      "firstSeen": "2026-11-27T05:04:18.106Z",
-      "lastCovered": "2026-11-27T05:04:18.106Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-27-binance-reopens-withdrawals-after-6-3-billion-hack"
-      ],
-      "eventUri": "eng-12225045",
-      "summary": "The world's largest crypto exchange has fully reopened withdrawals four weeks after a $6.3 billion hack froze customer funds. Lead with the four weeks customers could not touch their money. The structural point is custody risk: an exchange that says assets are 'fully backed' still held users' coins hostage for a month, and phishing scams now target the reopening. Name bitcoin."
-    },
-    {
-      "id": "ethereum-glamsterdam-december-test-quantum-censorship",
-      "label": "ETH news: Ethereum's much-awaited Glamsterdam upgrade cleared for December test",
-      "firstSeen": "2026-11-27T05:04:18.106Z",
-      "lastCovered": "2026-11-27T05:04:18.106Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-27-ethereum-glamsterdam-december-test-quantum-censorship"
-      ],
-      "eventUri": "eng-12225780",
-      "summary": "Ethereum core developers approved the Glamsterdam upgrade, including a contested change to how the network charges for storing data, for a December testnet. Lead with the fight over the next upgrade, Hegota: some researchers want quantum-computer defences ahead of a measure meant to stop transaction censorship. The structural point is a trade-off between two security threats and who decides it."
-    },
-    {
-      "id": "china-6g-trials-eight-regions-2030",
-      "label": "China launches 6G trials across eight regions, eyes 2030 rollout",
-      "firstSeen": "2026-11-27T05:04:18.106Z",
-      "lastCovered": "2026-11-27T05:04:18.106Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-27-china-6g-trials-eight-regions-2030"
-      ],
-      "eventUri": null,
-      "summary": "China's industry ministry and eight provinces (Beijing, Hebei, Shanghai, Jiangsu, Zhejiang, Anhui, Hubei, Guangdong) launched 6G pilot programmes in real industrial settings, aiming at a 2030 rollout. Lead with the move from the lab to factories. The structural point is the standards race: whoever deploys first writes the 6G standards, as Huawei did with 5G. Use the mainland view of the programme. Dateline Beijing."
-    },
-    {
-      "id": "flexible-perovskite-cigs-tandem-solar-efficiency",
-      "label": "Rigidity-driven molecular assembly for high-efficiency flexible perovskite/CIGS tandems",
-      "firstSeen": "2026-11-27T05:04:18.106Z",
-      "lastCovered": "2026-11-27T05:04:18.106Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-27-flexible-perovskite-cigs-tandem-solar-efficiency"
-      ],
-      "eventUri": null,
-      "summary": "Researchers report a molecular-assembly approach that raises the efficiency of flexible perovskite-on-CIGS tandem solar cells. Lead with the efficiency figure and how it compares with rigid silicon panels. Why it matters: light, bendable high-efficiency cells could go on roofs and vehicles that cannot carry glass panels. Say what still limits them: perovskite durability."
     }
   ]
 }
